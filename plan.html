@@ -8,7 +8,7 @@
         body {background-color: #5CDB95; text-align: center;}
         h1   {color: #05386B;}
         p    {color: #379683;}
-        h3   {color: black; text-align: left; padding-left: 5%; padding-right: 5%;}
+        h3   {color: rgb(0, 0, 0); text-align: left; padding-left: 5%; padding-right: 5%;}
         h2   {color: #05386B;}
         a    {color: #EDF5E1;}
         #internal {color: blue;}
@@ -18,7 +18,22 @@
 <body>
     <p><h1>Plan and design</h1></p>
     <p><h2>The game</h2></p>
+    <p><h3>
     The memory game is codded into the microbit. The inputs are the buttons. To start the game, button A must be pressed.
-    There are four patterns to be memorized
+    There are four patterns to be memorized. The game starts by showing level 1 and then one pattern, if the user pushes the right button 
+    then the game shows level 2 on the LED and then shows the previous pattern plus a new one. The levels and the amount of patterns keeps incruementing until 
+    the user presses the wrong pattern for the following stored pattern sequence. Here is a flow chart diagram explaining how the game works.
+    </p></h3>   
+    <img src="GAME_DIAGRAM.png" alt="Game Diagram" width="30%" height="30%">
+    <p><h3>
+    A score is initialised at the start and is increased every time when the correct button is pressed. When the wrong button is pushed the score is sent out to
+    python.
+    </h3></p>
+    <p><h2>The code for microbit</h2></p>
+    <img src="start.png" alt="start" width="20%" height="20%">
+    <p><h3>
+    This is the on start function and it initialise the number of LEDs and the serial port.
+    </h3></p>
+    <img src="buttonA.png" alt="start" width="20%" height="20%">
 </body>
 </html>
