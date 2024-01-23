@@ -8,7 +8,7 @@
         body {background-color: #5CDB95; text-align: center;}
         h1   {color: #05386B;}
         p    {color: #379683;}
-        h3   {color: rgb(0, 0, 0); text-align: left; padding-left: 5%; padding-right: 5%;}
+        h3   {color: rgb(0, 0, 0); text-align: center; padding-left: 5%; padding-right: 5%;}
         h2   {color: #05386B;}
         a    {color: #EDF5E1;}
         #internal {color: blue;}
@@ -23,6 +23,8 @@
     There are four patterns to be memorized. The game starts by showing level 1 and then one pattern, if the user pushes the right button 
     then the game shows level 2 on the LED and then shows the previous pattern plus a new one. The levels and the amount of patterns keeps incrementing until 
     the user presses the wrong pattern for the following stored pattern sequence. Here is a flow chart diagram explaining how the game works.
+    My analog input is the light sensor and my digital input are the buttons. My analog output is the sound coming from the microbit, if you get the  sequence correct
+    a nice sound will play, if incorrect an unhappy noise will play. My digital outputs are the LEDs on the microbit displaying the numbers and text for the game.
     </p></h3>   
     <img src="GAME_DIAGRAM.png" alt="Game Diagram" width="30%" height="30%">
     <p><h3>
@@ -45,6 +47,7 @@
     After it will call a function to build the patterns based on how many levels there are. 
     Another function will display all the LEDs based on the pattern sequence built by the pattern function.
     </h3></p>
+    <img src="Screenshot (4).png" alt="start" width="20%" height="20%">
 
 </body>
 </html>
