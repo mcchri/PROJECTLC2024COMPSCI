@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2024-01-29T14:30:01.969Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="68iHX4zPqcqgqsJdQ9PV" version="23.0.2" type="github">
+<mxfile host="app.diagrams.net" modified="2024-01-29T15:15:35.075Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="qPqntwrF7Nvigk-15aTS" version="23.0.2" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="2261" dy="1949" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1464" dy="1729" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -177,8 +177,8 @@
         <mxCell id="LbI6MgC-RqQd3pRqkspq-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="LbI6MgC-RqQd3pRqkspq-19" target="LbI6MgC-RqQd3pRqkspq-23">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="LbI6MgC-RqQd3pRqkspq-19" value="Output the text &quot;you lose&quot; and output the score and output a sad noise to confirm the loss." style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#6666FF;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="-80" y="570" width="300" height="65" as="geometry" />
+        <mxCell id="LbI6MgC-RqQd3pRqkspq-19" value="Output the text &quot;you lose&quot; and output the score and output a sad noise to confirm the loss. Output the age and level to the serial port for python." style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#6666FF;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="-80" y="560" width="430" height="80" as="geometry" />
         </mxCell>
         <mxCell id="LbI6MgC-RqQd3pRqkspq-21" value="No" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="394" y="360" width="40" height="30" as="geometry" />
