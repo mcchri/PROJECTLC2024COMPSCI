@@ -26,28 +26,18 @@
     My analog input is the light sensor and my digital input are the buttons. My analog output is the sound coming from the microbit, if you get the  sequence correct
     a nice sound will play, if incorrect an unhappy noise will play. My digital outputs are the LEDs on the microbit displaying the numbers and text for the game.
     </p></h3>   
-    <img src="GAME_DIAGRAM.png" alt="Game Diagram" width="30%" height="30%">
-    <p><h3>
-    A score is initialised at the start and is increased every time when the correct button is pressed. When the wrong button is pushed the score is sent out to
-    python.
+    <h2>Microbit flowcharts</h2>
+    <p><img src="GAME_DIAGRAM.png" alt="Game Diagram" width="30%" height="30%"></p>
+    <p><img src="Screenshot (5).png" alt="Game Diagram" width="30%" height="30%"></p>
+    <p><h3>   
+    The game starts by the user entering their age by them pressing button A and then outputs the text "age" also age = 0.
+    If the button A is pressed the age increases by 10, if button B ia pressed the age will increase by one and 
+    if pin 0 is pressed then it the user will choose the level of the game (how fast the images will appear on the LED screen).    
+    </p></h3>
+    <p><img src="Screenshot (12).png" alt="Game Diagram" width="30%" height="30%"></p>
+    <p><h3>If button B is pressed the level increases by one, if the level is equal to 3 and the button B is pressed then the 
+        level is equal to 1. If pin 0 is pressed then record the current light level (ANALOG INPUT). Output the text "level 1", initialise <thead></thead>
     </h3></p>
-    <p><h2>The code for microbit</h2></p>
-    <img src="start.png" alt="start" width="20%" height="20%">
-    <p><h3>
-    This is the on start function and it initialise the number of LEDs and the serial port.
-    </h3></p>
-    <img src="Screenshot (3).png" alt="start" width="20%" height="20%">
-    <p><h3>
-    When the start button A is pressed it shows level 1, creates an empty array for the patterns
-    , initialises the level to 1 and calls the game function to start the game. 
-    </h3></p>
-    <img src="Screenshot (4).png" alt="start" width="20%" height="20%">
-    <p><h3>
-    The function initialises an iterator that will go through every pattern of the sequence.
-    After it will call a function to build the patterns based on how many levels there are. 
-    Another function will display all the LEDs based on the pattern sequence built by the pattern function.
-    </h3></p>
-    <img src="Screenshot (4).png" alt="start" width="20%" height="20%">
 
 </body>
 </html>
