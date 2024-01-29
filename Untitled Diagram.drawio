@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2024-01-29T14:18:39.875Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="VfBsYasUGgkme5IFVlrY" version="23.0.2" type="github">
+<mxfile host="app.diagrams.net" modified="2024-01-29T14:20:56.318Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="sfgd5uCRUmjQp5De-96d" version="23.0.2" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="1434" dy="1949" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2261" dy="1949" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -125,8 +125,8 @@
         <mxCell id="LbI6MgC-RqQd3pRqkspq-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="LbI6MgC-RqQd3pRqkspq-6" target="LbI6MgC-RqQd3pRqkspq-11">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="LbI6MgC-RqQd3pRqkspq-6" value="iterator=0" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#6666FF;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="590" y="-60" width="120" height="60" as="geometry" />
+        <mxCell id="LbI6MgC-RqQd3pRqkspq-6" value="iterator=0&lt;br&gt;output a happy noise as analog ouput" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#6666FF;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="590" y="-60" width="200" height="60" as="geometry" />
         </mxCell>
         <mxCell id="LbI6MgC-RqQd3pRqkspq-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="LbI6MgC-RqQd3pRqkspq-7" target="LbI6MgC-RqQd3pRqkspq-6">
           <mxGeometry relative="1" as="geometry">
@@ -160,8 +160,8 @@
         <mxCell id="LbI6MgC-RqQd3pRqkspq-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="LbI6MgC-RqQd3pRqkspq-14" target="NYyCiRp0HVzE1PTWud5s-0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="LbI6MgC-RqQd3pRqkspq-14" value="iterator=iterator+1" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#6666FF;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="270" y="490" width="120" height="60" as="geometry" />
+        <mxCell id="LbI6MgC-RqQd3pRqkspq-14" value="iterator=iterator+1&lt;br&gt;output a happy noise as analog ouput" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#6666FF;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="140" y="450" width="230" height="60" as="geometry" />
         </mxCell>
         <mxCell id="LbI6MgC-RqQd3pRqkspq-15" value="Yes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="580" y="490" width="40" height="30" as="geometry" />
@@ -172,14 +172,14 @@
         <mxCell id="LbI6MgC-RqQd3pRqkspq-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="LbI6MgC-RqQd3pRqkspq-19" target="LbI6MgC-RqQd3pRqkspq-23">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="LbI6MgC-RqQd3pRqkspq-19" value="Output the text &quot;you lose&quot; and output the score&amp;nbsp;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#6666FF;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="20" y="555" width="190" height="65" as="geometry" />
+        <mxCell id="LbI6MgC-RqQd3pRqkspq-19" value="Output the text &quot;you lose&quot; and output the score and output a sad noise to confirm the loss." style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#6666FF;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="-80" y="570" width="300" height="65" as="geometry" />
         </mxCell>
         <mxCell id="LbI6MgC-RqQd3pRqkspq-21" value="No" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="394" y="360" width="40" height="30" as="geometry" />
         </mxCell>
         <mxCell id="LbI6MgC-RqQd3pRqkspq-23" value="End" style="ellipse;whiteSpace=wrap;html=1;fillColor=#B3FF66;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="55" y="680" width="120" height="80" as="geometry" />
+          <mxGeometry x="10" y="680" width="120" height="80" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
