@@ -13,31 +13,74 @@
         a    {color: #EDF5E1;}
         #internal {color: blue;}
         img  {padding-right: 5%; padding-left: 5%;}
+        .req {text-align: left; font-size: larger;}
         </style>
 </head>
 <body>
     <p><h1>Plan and design</h1></p>
     <p><h2>The game</h2></p>
     <p><h3>
-    The memory game is codded into the microbit. The inputs are the buttons. To start the game, button A must be pressed.
-    There are four patterns to be memorized. The game starts by showing level 1 and then one pattern, if the user pushes the right button 
-    then the game shows level 2 on the LED and then shows the previous pattern plus a new one. The levels and the amount of patterns keeps incrementing until 
+    The memory game is codded into the microbit.
+    There are four patterns to be memorized.  The levels and the amount of patterns keeps incrementing until 
     the user presses the wrong pattern for the following stored pattern sequence. Here is a flow chart diagram explaining how the game works.
-    My analog input is the light sensor and my digital input are the buttons. My analog output is the sound coming from the microbit, if you get the  sequence correct
-    a nice sound will play, if incorrect an unhappy noise will play. My digital outputs are the LEDs on the microbit displaying the numbers and text for the game.
+    My analog input is the light sensor and my digital input are the buttons. My analog output is the sound coming from the microbit.  My digital outputs are the LEDs.
     </p></h3>   
     <h2>Microbit flowcharts</h2>
     <p><img src="GAME_DIAGRAM.png" alt="Game Diagram" width="30%" height="30%"></p>
     <p><img src="Screenshot (5).png" alt="Game Diagram" width="30%" height="30%"></p>
+    <h2>The age input:</h2>
     <p><h3>   
     The game starts by the user entering their age by them pressing button A and then outputs the text "age" also age = 0.
     If the button A is pressed the age increases by 10, if button B ia pressed the age will increase by one and 
     if pin 0 is pressed then it the user will choose the level of the game (how fast the images will appear on the LED screen).    
     </p></h3>
-    <p><img src="Screenshot (12).png" alt="Game Diagram" width="30%" height="30%"></p>
+    <h2>The level input:</h2>
+    <p><img src="Screenshot (15).png" alt="Game Diagram" width="30%" height="30%"></p>
     <p><h3>If button B is pressed the level increases by one, if the level is equal to 3 and the button B is pressed then the 
-        level is equal to 1. If pin 0 is pressed then record the current light level (ANALOG INPUT). Output the text "level 1", initialise <thead></thead>
+        level is equal to 1. If pin 0 is pressed then record the current light level (ANALOG INPUT). Output the text "level 1", initialise
+        the game level, iterator and the list of LEDs. 
     </h3></p>
-
+    <h2>The LED output:</h2>
+    <p><img src="Screenshot (17).png" alt="Game Diagram" width="30%" height="30%"></p>
+    <p><h3>A random number is chosen from 1 to 4. The random number is placed within the list, the iterator goes through all the numbers in the list.
+        If the number is 1 then output a heart symbol, if the number is 2 then output a skull symbol, if the number is 3 then output
+        a smile symbol and if it is 4 then display the letter B. For every cheking increase the iterator by one to iterate through the list. 
+        If the iterator is equal to the last number then go to the buton logic, if the right buttons are pressed for the sequence then add another random
+        number to the list. If the button logic is false then end game.
+    </h3></p>
+    <h2>The button logic:</h2>
+    <p><img src="Screenshot (18).png" alt="Game Diagram" width="30%" height="30%"></p>
+    <p><img src="Screenshot (8).png" alt="Game Diagram" width="30%" height="30%"></p>
+    <p><img src="Screenshot (9).png" alt="Game Diagram" width="30%" height="30%"></p>
+    <p><h3>
+     Initialise an iterator. If button B pressed then button_input=1, if pin 0 pressed then button_input=2, if pin 1 pressed then button_input3, if pin 2 pressed
+     then button_input=4. If the input equals to the first item to the list and if the iterator equals to the sizse of the list minus 1 then iterator=0, output an analog output 
+     as a happy noise and output all the symbols from the list. If the iterator does not equal to the list then add 1 to it and start the conditioning again until the wrong button is pressed.
+     Output the score if the wrong button is pressed and output the serial output of light sensitivity. Output a sad noise to confirm the loss and end the game.
+    </h3></p>
+    <h2>The architecture of my design and the technologies used:</h2>
+    <p><img src="Screenshot (10).png" alt="Game Diagram" width="30%" height="30%"></p>
+    <p><h3>
+        The microbit recieves the code from the PC in order to execute the game that I made. The light level and the level of the game is send back to the PC. I used pyhton to send my data to 
+        the firebase. I retrieved the filtered data with javascript and made a graph using the graph module.
+       </h3></p>
+       <div class="req">
+       <h2>Hardware:</h2>
+       <ol>
+            <li>PC</li>
+            <li>Microbit</li>
+       </ol>
+       <h2>Software:</h2>
+       <ol>
+            <li>Makecode for microbit</li>
+            <li>Python</li>
+            <li>Javascript</li>
+       </ol>
+       </div>
+    <p><h2>User Requirements:</h2></p>   
+    <p><h3>This game will increase the attention span of the person by making the person memorize the patterns shown on the LED. Attention span is directly linked to the 
+        wellbeing of a person because they will be more productive and stimulated. The light levels of the room can affect how well the patterns are memorized. The end user wants to increase their
+        attention span then this game will meet their requirements.
+    </h3></p>
 </body>
 </html>
