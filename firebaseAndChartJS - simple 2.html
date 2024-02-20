@@ -2,102 +2,88 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChartJS Test</title>
-    <style>
-        body {text-align: center;}
-    </style>
-    <!-- load the chartJS module -->
-    <script type="module" src="https://unpkg.com/chart.js@4.2.1/dist/chart.umd.js"></script>
+    <title>Chart</title>
+
+    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase.js"></script>
+
+    <script src="Chart.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-database.js"></script>
+
 </head>
 <body>
-    
-    <div id="livegraph">
-        <canvas id="timeChart"></canvas>
-    </div>
 
-    <script type="module">
+<canvas id="myChart" width="200" height="200"></canvas>
+<script>
 
-        //This is where you paste the code to connect to your own database
-        //Copy and paste the CDN bit of code from your app that you created on Firebase.
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
-        
-        
-        // Your web app's Firebase configuration. Get this where you generate the private key for python
-        
-        const firebaseConfig = {
-          apiKey: "AIzaSyBY3Q5ppoXbKJ0QCNywi0JtnI8GaS1ChmQ",
-          uthDomain: "test-dc64b.firebaseapp.com",
-          databaseURL: "https://comp-sci-c8d0a-default-rtdb.europe-west1.firebasedatabase.app/",
-          projectId: "test-dc64b",
-          storageBucket: "test-dc64b.appspot.com",
-          messagingSenderId: "1052737261579",
-          appId: "1:1052737261579:web:e8abcfb85e8a0c5621770e"
-        };
-        
-        
-        
-        
-        // Initialize Firebase
-        
-        const app = initializeApp(firebaseConfig);
-        
-        
-        import {getDatabase, ref, onChildAdded} from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
-    
-        
-        const ctx = document.getElementById('scoreChart');
-        const db = getDatabase();//get a link to the database     
-        const commentsRef = ref(db, "Score/");//set the reference to the node you want to use
-       
 
-// Find each value added to the database and get it ready for graphing
-        onChildAdded(commentsRef, (data) => {
-  console.log(data.key, data.val());
-            var date = new Date(data.key * 1000)
-            let mm = date.getMonth() + 1; // Months start at 0!
-        let dd = date.getDate();
-        let hr = date.getHours();
-        let mn = date.getMinutes();
-        let sc = date.getSeconds();
-        
-        if (dd < 10) dd = '0' + dd;
-        if (mm < 10) mm = '0' + mm;
-        if (mn < 10) mn = '0' + mn;
-        
-        const formatteddate = dd + '_' + mm + ' ' + hr +':'+ mn +':'+ sc;
-            console.log(formatteddate)
-           chart.data.labels.push(formatteddate);//add the key to the labels on the x-axis
-           chart.data.datasets[0].data.push(data.val().Score);//add the temperature to the y-axis
-           chart.data.labels = chart.data.labels.slice(-30); //neagtive slice to only show 
-           chart.data.datasets[0].data = chart.data.datasets[0].data.slice(-30);//the last 30 values on each axis
-           chart.update('none');//don't do any animation           
-         });
-        
-// Create a chart object for our chart. Inside data - line 82: we need to set labels to an empty list
-// also in  datasets - line 85 we set data to an empty list. This is where our data goes.
-        var chart = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: [], 
-        datasets: [{
-          label: 'Temperature trace',
-          data: [],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Value',],
+            datasets: [{
+                label: '# of Whatever',
+                data: [0],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
         }
-      }
     });
 
-        </script>
+    function addData(chart, label, data) {
+        chart.data.labels.push(label);
+        chart.data.datasets.forEach((dataset) => {
+            dataset.data.push(data);
+        });
+        chart.update();
+    }
+
+    function removeData(chart) {
+        chart.data.labels.pop();
+        chart.data.datasets.forEach((dataset) => {
+            dataset.data.pop();
+        });
+        chart.update();
+    }
 
 
+    //Firebase code
+    //Config values to ba adapted!
+    var config = {
+        apiKey: "xxxxx",
+        authDomain: "xxxxx",
+        databaseURL: "xxxxx",
+        projectId: "xxxxx",
+        storageBucket: "xxxxx",
+        messagingSenderId: "xxxxx"
+    };
+
+    firebase.initializeApp(config);
+
+    var valueRef = firebase.database().ref('arduinoValue');
+    valueRef.on('value', function(snapshot) {
+      removeData(myChart);
+      addData(myChart, "1", snapshot.val());
+    });
+
+
+</script>
 
 </body>
 </html>
