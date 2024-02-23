@@ -3,16 +3,18 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
 import serial
+from serial.tools.list_ports import comports
 
 PID_MICROBIT = 516
 VID_MICROBIT = 3368
 TIMEOUT = 0.1
 
 def find_comport(pid, vid, baud):
+    #list_ports = serial.tools.list_ports.comports()
     ''' return a serial port '''
     ser_port = serial.Serial(timeout=TIMEOUT)
     ser_port.baudrate = baud
-    ports = list(list_ports.comports())
+    ports = serial.tools.list_ports.comports()
     print('scanning ports')
     for p in ports:
         if (p.pid == pid) and (p.vid == vid):
@@ -21,11 +23,11 @@ def find_comport(pid, vid, baud):
             return ser_port
     return None
 
-ser_micro = find_comport(PID_MICROBIT, VID_MICROBIT, 115200)
-if not ser_micro:
+ser = find_comport(PID_MICROBIT, VID_MICROBIT, 115200)
+if not ser:
     print('microbit not found')
 else:    
-    ser_micro.open()
+    ser.open()
 
 def firebase_read_reference(ref1,aux,ser1):
     source = 'microbit'
@@ -50,10 +52,10 @@ firebase_admin.initialize_app(cred,{'databaseURL': 'https://comp-sci-c8d0a-defau
 # get a reference to our db
 ref = db.reference()
 
-ser = serial.Serial()
-ser.baudrate = 115200
-ser.port = "COM6"
-ser.open()
+#ser = serial.Serial()
+#ser.baudrate = 115200
+#ser.port = "COM6"
+#ser.open()
 
 while True:
     iterator = 0
