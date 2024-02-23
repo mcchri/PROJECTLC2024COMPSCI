@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chart</title>
+    
+    <!-- Include Firebase JavaScript SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.4.0/firebase-database.js"></script>
+
+    <!-- Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<canvas id="myChart" width="400" height="400"></canvas>
+
+<script>
+// Your Firebase configuration
+const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+// Reference to your Firebase database
+const database = firebase.database();
+
+// Fetch data from Firebase
+function fetchData() {
+  const dataRef = database.ref('/Age/');
+  dataRef.once('value', function(snapshot) {
+    const data = snapshot.val();
+    // Process data or pass it to chart creation function
+    createChart(data);
+  });
+}
+
+// Create Chart with Chart.js
+function createChart(data) {
+  const labels = Object.keys(data);
+  const values = Object.values(data);
+  
+  const ctx = document.getElementById('myChart').getContext('2d');
+  const myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Your Dataset',
+        data: values,
+        borderColor: 'rgb(75, 192, 192)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+}
+
+// Call fetchData when the page loads
+window.onload = function() {
+  fetchData();
+};
+</script>
+
+</body>
+</html>
