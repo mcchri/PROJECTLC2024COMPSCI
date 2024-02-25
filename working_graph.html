@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Data Chart</title>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+</head>
+<body>
+    <h1>Firebase Data Chart</h1>
+    <div>
+        <canvas id="dataChart"></canvas>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+        import { getDatabase, ref, onChildAdded } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBc8kckOZJK6SWu9l2wTdu_0670eeZD0dE",
+            authDomain: "comp-sci-c8d0a.firebaseapp.com",
+            databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
+            databaseURL: "https://comp-sci-c8d0a-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "comp-sci-c8d0a",
+            storageBucket: "comp-sci-c8d0a.appspot.com",
+            messagingSenderId: "711439640173",
+            appId: "1:711439640173:web:d818150868affc75844164",
+            measurementId: "G-4RX0SVHZQE"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        const db = getDatabase();
+
+        const nodes = ['Light', 'Level', 'Score', 'Age'];
+
+        const dataRef = nodes.map(node => ref(db, node + '/'));
+
+        const ctx = document.getElementById('dataChart').getContext('2d');
+        const dataChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: nodes.map((node, index) => ({
+                    label: node,
+                    data: [],
+                    borderColor: `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 1)`,
+                    borderWidth: 1,
+                    fill: false
+                }))
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        dataRef.forEach((ref, index) => {
+            onChildAdded(ref, (snapshot) => {
+                const data = snapshot.val();
+                const timestamp = snapshot.key;
+                const value = parseInt(data[Object.keys(data)[0]]);
+                dataChart.data.labels.push(timestamp);
+                dataChart.data.datasets[index].data.push(value);
+                dataChart.update();
+            });
+        });
+    </script>
+</body>
+</html>
