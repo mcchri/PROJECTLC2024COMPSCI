@@ -33,7 +33,7 @@
 
         const db = getDatabase();
 
-        const nodes = ['Light', 'Level', 'Score', 'Age'];
+        const nodes = ['Level','Score'];
 
         const dataRef = nodes.map(node => ref(db, node + '/'));
 
@@ -59,16 +59,54 @@
             }
         });
 
-        dataRef.forEach((ref, index) => {
+       /* dataRef.forEach((ref, index) => {
             onChildAdded(ref, (snapshot) => {
                 const data = snapshot.val();
+                var date = new Date(index.key * 1000)
+                let mm = date.getMonth() + 1; // Months start at 0!
+                let dd = date.getDate();
+                let hr = date.getHours();
+                let mn = date.getMinutes();
+                let sc = date.getSeconds();
+        
+                if (dd < 10) dd = '0' + dd;
+                if (mm < 10) mm = '0' + mm;
+                if (mn < 10) mn = '0' + mn;
+        
+                const formatteddate = dd + '_' + mm + ' ' + hr +':'+ mn +':'+ sc;
+                
                 const timestamp = snapshot.key;
                 const value = parseInt(data[Object.keys(data)[0]]);
-                dataChart.data.labels.push(timestamp);
+                
+                if (value > 0){
+                  
+                dataChart.data.labels.push(formatteddate);
                 dataChart.data.datasets[index].data.push(value);
                 dataChart.update();
+                }
+                
             });
-        });
+        }); */
+        dataRef.forEach((ref, index) => {
+    onChildAdded(ref, (snapshot) => {
+        const data = snapshot.val();
+        const timestamp = snapshot.key;
+        const value = parseInt(data[Object.keys(data)[index]]); // Adjust this according to your data structure
+        
+        // Format timestamp as needed
+        const date = new Date(parseInt(timestamp) * 1000);
+        const formattedDate = date.toLocaleString(); // or format it in any other desired way
+        
+        // Ensure the value is valid before adding to the chart
+        if (!isNaN(value) && value > 0 && value < 100) {
+            console.log(value)
+            dataChart.data.labels.push(formattedDate);
+            dataChart.data.datasets[index].data.push(value);
+            dataChart.update();
+        }
+        
+    });
+});
     </script>
 </body>
 </html>
