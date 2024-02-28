@@ -51,7 +51,7 @@ def firebase_read_reference(ref1,aux,ser1):
         ref1.update({str(int(time.time())):{'Level':var1, 'Location':source}})
         print("Level:",var1)
 # path to the private key
-cred = credentials.Certificate("C:/Users/k_tur/OneDrive/Documents/cs/config.json")
+cred = credentials.Certificate("C:/Users/19CTurean.ACC/Documents/config.json")
 # URL to the database
 firebase_admin.initialize_app(cred,{'databaseURL': 'https://comp-sci-c8d0a-default-rtdb.europe-west1.firebasedatabase.app/'})
 # get a reference to our db
