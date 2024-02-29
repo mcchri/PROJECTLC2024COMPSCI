@@ -1,85 +1,136 @@
-import time
-import datetime
-import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import db
-import serial
-from serial.tools.list_ports import comports
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Data Chart</title>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+</head>
+<body>
+    <h1>Firebase Data Chart</h1>
+    <div>
+        <canvas id="dataChart"></canvas>
+    </div>
 
-PID_MICROBIT = 516
-VID_MICROBIT = 3368
-TIMEOUT = 0.1
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+        import { getDatabase, ref, onChildAdded } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
 
-def find_comport(pid, vid, baud):
-    #list_ports = serial.tools.list_ports.comports()
-    ''' return a serial port '''
-    ser_port = serial.Serial(timeout=TIMEOUT)
-    ser_port.baudrate = baud
-    ports = serial.tools.list_ports.comports()
-    print('scanning ports')
-    for p in ports:
-        if (p.pid == pid) and (p.vid == vid):
-            print('found target device pid: {} vid: {} port: {}'.format(p.pid, p.vid, p.device))
-            ser_port.port = str(p.device)
-            return ser_port
-    return None
+        const firebaseConfig = {
+            apiKey: "AIzaSyBc8kckOZJK6SWu9l2wTdu_0670eeZD0dE",
+            authDomain: "comp-sci-c8d0a.firebaseapp.com",
+            databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
+            databaseURL: "https://comp-sci-c8d0a-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "comp-sci-c8d0a",
+            storageBucket: "comp-sci-c8d0a.appspot.com",
+            messagingSenderId: "711439640173",
+            appId: "1:711439640173:web:d818150868affc75844164",
+            measurementId: "G-4RX0SVHZQE"
+        };
 
-ser = find_comport(PID_MICROBIT, VID_MICROBIT, 115200)
-if not ser:
-    print('microbit not found')
-else:    
-    ser.open()
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
 
-def firebase_read_reference(ref1,aux,ser1):
-    source = 'microbit'
-    var1 = ser1.readline()
-    var1 = str(var1.decode('utf-8'))
-    time_taken = str(int(time.time()))
-    
-    if aux == 0:
-        time.sleep(1)
-        ref1.update({time_taken:{'Light_level':var1, 'Location':source}})
-        print("Light_level:",var1)
-    elif aux == 1:
-        time.sleep(1)
-        ref1.update({time_taken:{'Age':var1, 'Location':source}})
-        print("Age:",var1)
-    elif aux == 2:
-        time.sleep(1)
-        ref1.update({time_taken:{'Score':var1, 'Location':source}})
-        print("Score:",var1)
-    else:
-        time.sleep(1)
-        ref1.update({time_taken:{'Level':var1, 'Location':source}})
-        print("Level:",var1)
-# path to the private key
-cred = credentials.Certificate("C:/Users/19CTurean.ACC/Documents/config.json")
-# URL to the database
-firebase_admin.initialize_app(cred,{'databaseURL': 'https://comp-sci-c8d0a-default-rtdb.europe-west1.firebasedatabase.app/'})
-# get a reference to our db
-ref = db.reference()
+        const db = getDatabase();
 
-#ser = serial.Serial()
-#ser.baudrate = 115200
-#ser.port = "COM6"
-#ser.open()
+        const nodes = ['Level','Score','time_taken_at'];
 
-while True:
-    #print(ser.readline())
-    #print(ser.readline())
-    if ser.readline().strip().decode('utf-8') == 'lose':
-       
-        time.sleep(1)
-        iterator = 0
-        ref = db.reference().child('Light')
-        firebase_read_reference(ref,iterator,ser)
-        iterator += 1
-        ref = db.reference().child('Age')
-        firebase_read_reference(ref,iterator,ser)
-        iterator += 1
-        ref = db.reference().child('Score')
-        firebase_read_reference(ref,iterator,ser)
-        iterator += 1
-        ref = db.reference().child('Level')
-        firebase_read_reference(ref,iterator,ser)
-    #ref.delete()
+        //const dataRefs = nodes.map(node => ref(db, node + '/').limitToLast(31));
+        const dataRef = nodes.map(node => ref(db, node + '/'));
+
+        const ctx = document.getElementById('dataChart').getContext('2d');
+        const dataChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: nodes.map((node, index) => ({
+                    label: node,
+                    data: [],
+                    borderColor: `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 1)`,
+                    borderWidth: 1,
+                    fill: false
+                }))
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    },
+                    x: {
+                        max: 30
+                    }
+                }
+            }
+        });
+
+       /* dataRef.forEach((ref, index) => {
+            onChildAdded(ref, (snapshot) => {
+                const data = snapshot.val();
+                var date = new Date(index.key * 1000)
+                let mm = date.getMonth() + 1; // Months start at 0!
+                let dd = date.getDate();
+                let hr = date.getHours();
+                let mn = date.getMinutes();
+                let sc = date.getSeconds();
+        
+                if (dd < 10) dd = '0' + dd;
+                if (mm < 10) mm = '0' + mm;
+                if (mn < 10) mn = '0' + mn;
+        
+                const formatteddate = dd + '_' + mm + ' ' + hr +':'+ mn +':'+ sc;
+                
+                const timestamp = snapshot.key;
+                const value = parseInt(data[Object.keys(data)[0]]);
+                
+                if (value > 0){
+                  
+                dataChart.data.labels.push(formatteddate);
+                dataChart.data.datasets[index].data.push(value);
+                dataChart.update();
+                }
+                
+            });
+        }); */
+        dataRef.forEach((ref, index) => {
+    onChildAdded(ref, (snapshot) => {
+        const data = snapshot.val();
+                var date = new Date(snapshot.key *1000)
+                let mm = date.getMonth() + 1; // Months start at 0!
+                let dd = date.getDate();
+                let hr = date.getHours();
+                let mn = date.getMinutes();
+                let sc = date.getSeconds();
+        
+                if (dd < 10) dd = '0' + dd;
+                if (mm < 10) mm = '0' + mm;
+                if (mn < 10) mn = '0' + mn;
+        
+                const formatteddate = dd + '_' + mm + ' ' + hr +':'+ mn +':'+ sc;
+      
+        const timestamp = snapshot.key;
+        const value = parseInt(data[Object.keys(data)[index]]); // Adjust this according to your data structure
+        
+        // Format timestamp as needed
+        
+        
+        // Ensure the value is valid before adding to the chart
+        if (!isNaN(value) && value > 0 && value < 100) {
+            console.log(value)
+            var now = new Date();
+            dataChart.data.labels.push(formatteddate);
+            if (dataChart.data.datasets[index].data.length > 30) {
+                dataChart.data.labels.shift();
+                dataChart.data.datasets[index].data.shift();
+            }
+            
+                dataChart.data.datasets[index].data.push(value); // Remove the first entry if more than 30
+                dataChart.update(); // Remove the corresponding label
+        
+            
+        }
+        
+    });
+});
+    </script>
+</body>
+</html>
