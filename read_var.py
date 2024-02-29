@@ -1,4 +1,5 @@
 import time
+import datetime
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
@@ -33,22 +34,23 @@ def firebase_read_reference(ref1,aux,ser1):
     source = 'microbit'
     var1 = ser1.readline()
     var1 = str(var1.decode('utf-8'))
+    time_taken = str(int(time.time()))
     
     if aux == 0:
         time.sleep(1)
-        ref1.update({str(int(time.time())):{'Light_level':var1, 'Location':source}})
+        ref1.update({time_taken:{'Light_level':var1, 'Location':source}})
         print("Light_level:",var1)
     elif aux == 1:
         time.sleep(1)
-        ref1.update({str(int(time.time())):{'Age':var1, 'Location':source}})
+        ref1.update({time_taken:{'Age':var1, 'Location':source}})
         print("Age:",var1)
     elif aux == 2:
         time.sleep(1)
-        ref1.update({str(int(time.time())):{'Score':var1, 'Location':source}})
+        ref1.update({time_taken:{'Score':var1, 'Location':source}})
         print("Score:",var1)
     else:
         time.sleep(1)
-        ref1.update({str(int(time.time())):{'Level':var1, 'Location':source}})
+        ref1.update({time_taken:{'Level':var1, 'Location':source}})
         print("Level:",var1)
 # path to the private key
 cred = credentials.Certificate("C:/Users/19CTurean.ACC/Documents/config.json")
