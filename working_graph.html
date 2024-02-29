@@ -89,6 +89,10 @@
         }); */
         dataRef.forEach((ref, index) => {
     onChildAdded(ref, (snapshot) => {
+        
+        
+        
+        
         const data = snapshot.val();
         const timestamp = snapshot.key;
         const value = parseInt(data[Object.keys(data)[index]]); // Adjust this according to your data structure
@@ -100,7 +104,7 @@
         // Ensure the value is valid before adding to the chart
         if (!isNaN(value) && value > 0 && value < 100) {
             console.log(value)
-            dataChart.data.labels.push(formattedDate);
+            dataChart.data.labels.push(formatteddate);
             dataChart.data.datasets[index].data.push(value);
             dataChart.update();
         }
