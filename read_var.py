@@ -36,8 +36,9 @@ def firebase_read_reference(ref1,aux,ser1):
     var1 = str(var1.decode('utf-8'))
     timestamp = int(time.time())
     date_time = datetime.fromtimestamp(timestamp)
-    time_taken = date_time.strftime("%S/%M/%H/%d/%m/%Y")
+    time_taken = str(date_time.strftime("%S %M %H %d %m %Y"))
     time_taken_key = date_time.strftime("%Y %m %d %H %d %m %Y")
+    print(str(date_time.strftime("%S %M %H %d %m %Y")))
     if aux == 0:
         time.sleep(1)
         ref1.update({timestamp:{'Light_level':var1, 'Location':source, 'time_taken_at':time_taken}})
