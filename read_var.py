@@ -40,19 +40,19 @@ def firebase_read_reference(ref1,aux,ser1):
     time_taken_key = date_time.strftime("%Y %m %d %H %d %m %Y")
     if aux == 0:
         time.sleep(1)
-        ref1.update({time_taken_key:{'Light_level':var1, 'Location':source, 'time_taken_at':time_taken}})
+        ref1.update({timestamp:{'Light_level':var1, 'Location':source, 'time_taken_at':time_taken}})
         print("Light_level:",var1)
     elif aux == 1:
         time.sleep(1)
-        ref1.update({time_taken_key:{'Age':var1, 'Location':source, 'time_taken_at':time_taken}})
+        ref1.update({timestamp:{'Age':var1, 'Location':source, 'time_taken_at':time_taken}})
         print("Age:",var1)
     elif aux == 2:
         time.sleep(1)
-        ref1.update({time_taken_key:{'Score':var1, 'Location':source, 'time_taken_at':time_taken}})
+        ref1.update({timestamp:{'Score':var1, 'Location':source, 'time_taken_at':time_taken}})
         print("Score:",var1)
     else:
         time.sleep(1)
-        ref1.update({time_taken_key:{'Level':var1, 'Location':source, 'time_taken_at':time_taken}})
+        ref1.update({timestamp:{'Level':var1, 'Location':source, 'time_taken_at':time_taken}})
         print("Level:",var1)
 # path to the private key
 cred = credentials.Certificate("C:/Users/19CTurean.ACC/Documents/config.json")
