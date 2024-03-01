@@ -90,7 +90,7 @@
         dataRef.forEach((ref, index) => {
     onChildAdded(ref, (snapshot) => {
         
-        
+        /*
         var date = new Date(snapshot.key * 1000);
         
                 let mm = date.getMonth() + 1; // Months start at 0!
@@ -104,21 +104,22 @@
                 if (mn < 10) mn = '0' + mn;
         
                 const formatteddate = dd + '_' + mm + ' ' + hr +':'+ mn +':'+ sc;
-        
+        */
         const data = snapshot.val();
+        
         const timestamp = snapshot.key;
         const value = parseInt(data[Object.keys(data)[index]]); // Adjust this according to your data structure
-        
+        console.log(timestamp)
         // Format timestamp as needed
         
         // or format it in any other desired way
         
         // Ensure the value is valid before adding to the chart
         if (!isNaN(value) && value > 0 && value < 100) {
-            console.log(value)
-            dataChart.data.labels.push(formatteddate);
+            
+            dataChart.data.labels.push(timestamp);
             dataChart.data.datasets[index].data.push(value);
-            dataChart.data.datasets[index].data.push(data.val());
+            //dataChart.data.datasets[index].data.push(data);
             dataChart.data.labels = dataChart.data.labels.slice(-31); //neagtive slice to only show
             dataChart.data.datasets[index].data = dataChart.data.datasets[index].data.slice(-31);//the last 31 values on each axis
             dataChart.update();
