@@ -40,23 +40,27 @@ def firebase_read_reference(ref1,aux,ser1):
     time_taken_key = date_time.strftime("%Y %m %d %H %d %m %Y")
     print(str(date_time.strftime("%S %M %H %d %m %Y")))
     if aux == 0:
-        time.sleep(1)
-        ref1.update({timestamp:{'Light_level':var1, 'Location':source, 'time_taken_at':time_taken}})
+        time.sleep(0.1)
+        ref1.update({timestamp:{'Light_level':var1, 'Location':source}})
         print("Light_level:",var1)
     elif aux == 1:
-        time.sleep(1)
-        ref1.update({timestamp:{'Age':var1, 'Location':source, 'time_taken_at':time_taken}})
+        time.sleep(0.1)
+        ref1.update({timestamp:{'Age':var1, 'Location':source}})
         print("Age:",var1)
     elif aux == 2:
-        time.sleep(1)
-        ref1.update({timestamp:{'Score':var1, 'Location':source, 'time_taken_at':time_taken}})
+        time.sleep(0.1)
+        ref1.update({timestamp:{'Score':var1, 'Location':source}})
         print("Score:",var1)
-    else:
-        time.sleep(1)
-        ref1.update({timestamp:{'Level':var1, 'Location':source, 'time_taken_at':time_taken}})
+    elif aux == 3:
+        time.sleep(0.1)
+        ref1.update({timestamp:{'Level':var1, 'Location':source}})
         print("Level:",var1)
+    else:
+        time.sleep(0.1)
+        ref1.update({timestamp:{'Memory_level':var1, 'Location':source}})
+        print("Memory:",var1)
 # path to the private key
-cred = credentials.Certificate("C:/Users/19CTurean.ACC/Documents/config.json")
+cred = credentials.Certificate("C:/Users/k_tur/OneDrive/Documents/cs/config.json")
 # URL to the database
 firebase_admin.initialize_app(cred,{'databaseURL': 'https://comp-sci-c8d0a-default-rtdb.europe-west1.firebasedatabase.app/'})
 # get a reference to our db
@@ -72,7 +76,7 @@ while True:
     #print(ser.readline())
     if ser.readline().strip().decode('utf-8') == 'lose':
        
-        time.sleep(1)
+        time.sleep(0.1)
         iterator = 0
         ref = db.reference().child('Light')
         firebase_read_reference(ref,iterator,ser)
@@ -84,5 +88,8 @@ while True:
         firebase_read_reference(ref,iterator,ser)
         iterator += 1
         ref = db.reference().child('Level')
+        firebase_read_reference(ref,iterator,ser)
+        iterator += 1
+        ref = db.reference().child('Memory')
         firebase_read_reference(ref,iterator,ser)
     #ref.delete()
