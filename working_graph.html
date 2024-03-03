@@ -33,7 +33,7 @@
 
         const db = getDatabase();
 
-        const nodes = ['Level','Score'];
+        const nodes = ['Level','Score','Memory'];
 
         const dataRef = nodes.map(node => ref(db, node + '/'));
 
@@ -60,87 +60,35 @@
                 }
             }
         });
-
-       /* dataRef.forEach((ref, index) => {
-            onChildAdded(ref, (snapshot) => {
-                const data = snapshot.val();
-                var date = new Date(index.key * 1000)
-                let mm = date.getMonth() + 1; // Months start at 0!
-                let dd = date.getDate();
-                let hr = date.getHours();
-                let mn = date.getMinutes();
-                let sc = date.getSeconds();
         
-                if (dd < 10) dd = '0' + dd;
-                if (mm < 10) mm = '0' + mm;
-                if (mn < 10) mn = '0' + mn;
-        
-                const formatteddate = dd + '_' + mm + ' ' + hr +':'+ mn +':'+ sc;
-                
-                const timestamp = snapshot.key;
-                const value = parseInt(data[Object.keys(data)[0]]);
-                
-                if (value > 0){
-                  
-                dataChart.data.labels.push(formatteddate);
-                dataChart.data.datasets[index].data.push(value);
-                dataChart.update();
-                }
-                
-            });
-        }); */
+       
+        const level_list = [];
         dataRef.forEach((ref, index) => {
     onChildAdded(ref, (snapshot) => {
-        
-        
         var date = new Date(snapshot.key * 1000);
-        /*
-                let mm = date.getMonth() + 1; // Months start at 0!
-                let dd = date.getDate();
-                let hr = date.getHours();
-                let mn = date.getMinutes();
-                let sc = date.getSeconds();
-        
-                if (dd < 10) dd = '0' + dd;
-                if (mm < 10) mm = '0' + mm;
-                if (mn < 10) mn = '0' + mn;
-        
-                const formatteddate = dd + '_' + mm + ' ' + hr +':'+ mn +':'+ sc;
-        */
         const data = snapshot.val();
-        
-        //const timestamp = snapshot.key;
-        const value = parseInt(data[Object.keys(data)[index]]); // Adjust this according to your data structure
+        const value = parseInt(data[Object.keys(data)[index]]);
         const timestamp = String(data["time_taken_at"]);
-        /*
-        const parts = data["time_taken_at"].split(" ");
-        const day = parts[0];
-        const month = parts[1];
-        const year = parts[2];
-        const hours = parts[3];
-        const minutes = parts[4];
-        const seconds = parts[5];
-        */
-        //const timestamp = new Date(year, month - 1, day, hours, minutes, seconds).getTime();
-        console.log(timestamp)
-        // Format timestamp as needed
-        
-        // or format it in any other desired way
-        
-        // Ensure the value is valid before adding to the chart
         if (!isNaN(value) && value > 0 && value < 100) {
             if(timestamp != NaN){
             dataChart.data.labels.push(timestamp);
             }
+            if(index == 1){
+                level_list.push(parseInt(value));
+            }    
             dataChart.data.datasets[index].data.push(value);
-            //dataChart.data.datasets[index].data.push(data);
             dataChart.data.labels = dataChart.data.labels.slice(-31); //neagtive slice to only show
             dataChart.data.datasets[index].data = dataChart.data.datasets[index].data.slice(-31);//the last 31 values on each axis
             dataChart.update();
         }
         
     });
+    
 });
+
+
+
     </script>
+    <p id="demo"></p>
 </body>
 </html>
