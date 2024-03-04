@@ -4,7 +4,7 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
 # path to the private key
-cred = credentials.Certificate("C:/Users/k_tur/OneDrive/Documents/cs/config.json")
+cred = credentials.Certificate("C:/Users/19CTurean.ACC/Documents/config.json")
 # URL to the database
 firebase_admin.initialize_app(cred,{'databaseURL': 'https://comp-sci-c8d0a-default-rtdb.europe-west1.firebasedatabase.app/'})
 # get a reference to our db
@@ -43,6 +43,20 @@ list_light = []
 list_age = []
 if data:
     for key, value in data.items():
+        if key == 'Memory':
+            for k, v in value.items():
+                if v['Memory'].strip().isnumeric():
+                    list_memory.append(int(v['Memory_level']))
+        elif key == 'Light':
+            for k, v in value.items():
+                if v['Light_level'].strip().isnumeric():
+                    list_light.append(int(v['Light_level']))
+        elif key == 'Age':
+            for k, v in value.items():
+                if v['Age'].strip().isnumeric():
+                    list_age.append(int(v['Age']))
+'''
+    for key, value in data.items():
         #change score to Memory ////////
         if key == 'Score':
             #print(value.get("Score"))
@@ -62,26 +76,36 @@ if data:
                         if x % 2 ==0:
                             i = list(i.split(" "))
                             #print(i[0])
-                            if i[0].isnumeric():
-                                list_memory.append(int(i[0]))
-        elif key == 'Light':
-            first_key = list(value.items())
-            for i in first_key:
-                #print(list(str(i).split("'")))
-                j = 0
-                x = 0
-                for i in list(str(i).split("'")):
-                 if i == "Light":
-                        j = 0
-                        #print(i)
-                        j+=1
-                        x+=1
-                        if j == 3:
-                         if x % 2 ==0:
-                            i = list(i.split(" "))
-                            #print(i[0])
-                            if i[0].isnumeric():
-                                list_light.append(int(i[0]))
+                            elif key == 'Light':
+            for k,v in value.items():
+                if v['Light_level'].strip().isnumeric():
+                                 list_light.append(int(v['Light_level']))
+                print(v['Light_level'])#if k == 'Light_level':
+'''
+                            
+        
+                
+                    #print('Light_level is: ',v)
+#             print(value)
+#             first_key = list(value.values())
+#             print(first_key)
+#             for i in first_key:
+#                 #print(list(str(i).split("'")))
+#                 j = 0
+#                 x = 0
+#                 for i in list(str(i).split("'")):
+#                  if i == "Light":
+#                         j = 0
+#                         #print(i)
+#                  j+=1
+#                  x+=1
+#                  if j == 3:
+#                          if x % 2 ==0:
+#                             i = list(i.split(" "))
+#                             #print(i[0])
+#                             if i[0].isnumeric():
+#                                 list_light.append(int(i[0]))
+'''
         elif key == 'Age':
             first_key = list(value.items())
             for i in first_key:
@@ -100,6 +124,13 @@ if data:
                             #print(i[0])
                             if i[0].isnumeric():
                                 list_age.append(int(i[0]))
+                                elif key == 'Age':
+            for k,v in value.items():
+                if v['Age'].strip().isnumeric():
+                                 list_light.append(int(v['Age']))
+                print(v['Age'])#if k == 'Light_level':
+'''
+        
             
 Sum = sum(list_memory)
 average_memory = Sum / len(list_memory)
@@ -107,8 +138,8 @@ median = round(len(list_memory) / 2) - 1
 list_memory2 = list_memory
 list_memory.sort()
 memory_level(average_memory,list_memory2[median],statistics.mode(list_memory2))
-location = input("Are you in a room or outside,(enter room or outside)")
-ONOROFF = input("Is there lights on in your room or is there sunlight outside,(True or False)")
+location = input("Are you in a room or outside,(enter room or outside) ")
+ONOROFF = input("Is there lights on in your room or is there sunlight outside,(True or False) ")
 on_off = False
 if ONOROFF == "True":
     on_off = True
@@ -117,8 +148,8 @@ else:
 Sum = sum(list_light)
 average = Sum / len(list_light)
 light_level = light_level(location,average,on_off)
-read1 = input("Do you read any books,(Yes or No)")
-undereightheen = input("Are you under 18,(True or False)")
+read1 = input("Do you read any books,(Yes or No) ")
+undereightheen = input("Are you under 18,(True or False) ")
 under= False
 if undereightheen == "True":
     under = True
