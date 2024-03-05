@@ -34,7 +34,7 @@
         const db = getDatabase();
 
         const nodes = ['Level','Score','Memory'];
-
+        const colors = ['#FF5733', '#33FF57', '#5733FF', '#FF33E9', '#33E9FF', '#E9FF33', '#3333FF', '#FF3333', '#33FFEA', '#EA33FF'];
         const dataRef = nodes.map(node => ref(db, node + '/'));
 
         const ctx = document.getElementById('dataChart').getContext('2d');
@@ -45,7 +45,7 @@
                 datasets: nodes.map((node, index) => ({
                     label: node,
                     data: [],
-                    borderColor: `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 1)`,
+                    borderColor: colors[Math.floor(Math.random() * colors.length)],
                     borderWidth: 1,
                     fill: false
                 }))
@@ -62,7 +62,6 @@
         });
         
        
-        const level_list = [];
         dataRef.forEach((ref, index) => {
     onChildAdded(ref, (snapshot) => {
         var date = new Date(snapshot.key * 1000);
@@ -72,24 +71,20 @@
         if (!isNaN(value) && value > 0 && value < 100) {
             
             if(index == 1){
-                level_list.push(parseInt(value));
-                //console.log(timestamp)
+                dataChart.data.datasets[index].data.push(parseInt(data["Score"]));
+            }else if(index == 2){
                 if(timestamp != NaN){
-            dataChart.data.labels.push(timestamp);
-            
+                    //dataChart.data.datasets[index].data.push(value);
+                    dataChart.data.labels.push(timestamp);
             }
+                
+                dataChart.data.datasets[index].data.push(parseInt(data["A_Memory_level"]));
+            }else if(index==0){
+                dataChart.data.datasets[index].data.push(parseInt(data["Level"]));
             }    
             
-            dataChart.data.datasets[index].data.push(value);
-            if(index == 2 ){
-                console.log(value, "HI")
-            }
-            if(index == 1){
-                console.log(value)
-            }
-            if(index == 0){
-                console.log(value)
-            }
+            //dataChart.data.datasets[index].data.push(value);
+            
             dataChart.data.labels = dataChart.data.labels.slice(-31); //neagtive slice to only show
             dataChart.data.datasets[index].data = dataChart.data.datasets[index].data.slice(-31);//the last 31 values on each axis
             dataChart.update();
