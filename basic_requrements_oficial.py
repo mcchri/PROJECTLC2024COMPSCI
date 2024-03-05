@@ -4,13 +4,14 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
 # path to the private key
-cred = credentials.Certificate("C:/Users/k_tur/OneDrive/Documents/cs/config.json")
+cred = credentials.Certificate("C:/Users/19CTurean.ACC/Documents/config.json")
 # URL to the database
 firebase_admin.initialize_app(cred,{'databaseURL': 'https://comp-sci-c8d0a-default-rtdb.europe-west1.firebasedatabase.app/'})
 # get a reference to our db
-ref = db.reference()
+ref = db.reference('Memory')
 
 data = ref.get()
+print(ref.get())
 nested_dict = data
 def memory_level(avg,med,mod):
     level = avg*med*mod
@@ -27,35 +28,24 @@ def memory_level(avg,med,mod):
 
 list_memory = []
 if data:
-    for key, value in data.items():
-        #change score to Memory ////////
-        if key == 'Score':
-            #print(value.get("Score"))
-            first_key = list(value.items())
-            for i in first_key:
-                #print(list(str(i).split("'")))
-                j = 0
-                x = 0
-                for i in list(str(i).split("'")):
-                    # Change score to memory //////////
-                    if i == "Score":
-                        j = 0
-                        #print(i)
-                    j+=1
-                    x+=1
-                    if j == 3:
-                        if x % 2 ==0:
-                            i = list(i.split(" "))
-                            #print(i[0])
-                            if i[0].isnumeric():
-                                list_memory.append(int(i[0]))
-            break
+    print(data)
+    list1 = list(str(data).split("'"))
+    count = 0
+    for i in list1:
+        if i == "A_Memory_level":
+            string_element = list1[count+2]
+            num1 = list(string_element.split(" "))
+            if num1[0].isnumeric():
+                list_memory.append(int(num1[0]))
+        count += 1        
+
+    
 Sum = sum(list_memory)
 average = Sum / len(list_memory)
-print("average memory span is",round(average))
+print("average memory span is",round(average),"points.")
 median = round(len(list_memory) / 2) - 1
 list_memory2 = list_memory
 list_memory.sort()
-print("median memory span is",list_memory2[median])
-print("Modal number of memory is",(statistics.mode(list_memory2)))
+print("median memory span is",list_memory2[median],"points.")
+print("Modal number of memory is",(statistics.mode(list_memory2)),"points.")
 memory_level(average,list_memory2[median],statistics.mode(list_memory2))
