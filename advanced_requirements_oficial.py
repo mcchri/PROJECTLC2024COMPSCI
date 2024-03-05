@@ -41,97 +41,37 @@ def age_level(read,age,under_age):
 list_memory = []
 list_light = []
 list_age = []
+count = 0
 if data:
-    for key, value in data.items():
-        if key == 'Memory':
-            for k, v in value.items():
-                if v['Memory'].strip().isnumeric():
-                    list_memory.append(int(v['Memory_level']))
-        elif key == 'Light':
-            for k, v in value.items():
-                if v['Light_level'].strip().isnumeric():
-                    list_light.append(int(v['Light_level']))
-        elif key == 'Age':
-            for k, v in value.items():
-                if v['Age'].strip().isnumeric():
-                    list_age.append(int(v['Age']))
-'''
-    for key, value in data.items():
-        #change score to Memory ////////
-        if key == 'Score':
-            #print(value.get("Score"))
-            first_key = list(value.items())
-            for i in first_key:
-                #print(list(str(i).split("'")))
-                j = 0
-                x = 0
-                for i in list(str(i).split("'")):
-                    # Change score to memory //////////
-                    if i == "Score":
-                        j = 0
-                        #print(i)
-                    j+=1
-                    x+=1
-                    if j == 3:
-                        if x % 2 ==0:
-                            i = list(i.split(" "))
-                            #print(i[0])
-                            elif key == 'Light':
-            for k,v in value.items():
-                if v['Light_level'].strip().isnumeric():
-                                 list_light.append(int(v['Light_level']))
-                print(v['Light_level'])#if k == 'Light_level':
-'''
-                            
-        
-                
-                    #print('Light_level is: ',v)
-#             print(value)
-#             first_key = list(value.values())
-#             print(first_key)
-#             for i in first_key:
-#                 #print(list(str(i).split("'")))
-#                 j = 0
-#                 x = 0
-#                 for i in list(str(i).split("'")):
-#                  if i == "Light":
-#                         j = 0
-#                         #print(i)
-#                  j+=1
-#                  x+=1
-#                  if j == 3:
-#                          if x % 2 ==0:
-#                             i = list(i.split(" "))
-#                             #print(i[0])
-#                             if i[0].isnumeric():
-#                                 list_light.append(int(i[0]))
-'''
-        elif key == 'Age':
-            first_key = list(value.items())
-            for i in first_key:
-                #print(list(str(i).split("'")))
-                j = 0
-                x = 0
-                for i in list(str(i).split("'")):
-                 if i == "Age":
-                        j = 0
-                        #print(i)
-                        j+=1
-                        x+=1
-                        if j == 3:
-                         if x % 2 ==0:
-                            i = list(i.split(" "))
-                            #print(i[0])
-                            if i[0].isnumeric():
-                                list_age.append(int(i[0]))
-                                elif key == 'Age':
-            for k,v in value.items():
-                if v['Age'].strip().isnumeric():
-                                 list_light.append(int(v['Age']))
-                print(v['Age'])#if k == 'Light_level':
-'''
-        
-            
+    for k,v in data.items():
+        list1 = list(str(v.items()).split("'"))
+        count = 0
+        if k == "Light":
+            for i in list1:
+                if i == "Light_level":
+                    string_element = list1[count+2].strip()
+                    num1 = list(string_element.split(" "))
+                    if num1[0].isnumeric():
+                        list_light.append(int(num1[0]))
+                count += 1
+        elif k == "Age":
+            for i in list1:
+                if i == "Age":
+                    string_element = list1[count+2].strip()
+                    num1 = list(string_element.split(" "))
+                    if num1[0].isnumeric():
+                        list_age.append(int(num1[0]))
+                count += 1
+        elif k == "Memory":
+            for i in list1:
+                if i == "Memory_level":
+                    string_element = list1[count+2].strip()
+                    num1 = list(string_element.split(" "))
+                    if num1[0].isnumeric():
+                        
+                        list_memory.append(int(num1[0]))
+                count += 1        
+      
 Sum = sum(list_memory)
 average_memory = Sum / len(list_memory)
 median = round(len(list_memory) / 2) - 1
