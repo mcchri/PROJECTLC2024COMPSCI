@@ -1,4 +1,4 @@
-import time
+#imports all the necessary modules
 import statistics
 import firebase_admin
 from firebase_admin import credentials
@@ -9,11 +9,12 @@ cred = credentials.Certificate("C:/Users/19CTurean.ACC/Documents/config.json")
 firebase_admin.initialize_app(cred,{'databaseURL': 'https://comp-sci-c8d0a-default-rtdb.europe-west1.firebasedatabase.app/'})
 # get a reference to our db
 ref = db.reference()
-
+#gets all the data from the firebase
 data = ref.get()
-nested_dict = data
+# a function to calculate the memory level of the user using the average, median and mode of the memory data
 def memory_level(avg,med,mod):
     level = avg*med*mod
+# a function to calculate the memory level of the user by knowing the location of the user, knowing if there is a sufficient light source and the average light level.
 def light_level(loc,light_val,on_or_off_light):    
     if loc == "room":
         if on_or_off_light:
@@ -25,7 +26,7 @@ def light_level(loc,light_val,on_or_off_light):
             return light_val*5
     else:
             return int(light_val/2)
-        
+# a function to calculate the age level of the user by knowing if the user reads, if they are underage and the average age of all the users who played the game        
 def age_level(read,age,under_age):
     if read == "Yes":
         if under_age:
@@ -37,7 +38,7 @@ def age_level(read,age,under_age):
             return age*5
     else:
             return int(age/2)
-        
+# the folllowing code extracts memory, light and age values from firebase
 list_memory = []
 list_light = []
 list_age = []
@@ -52,7 +53,10 @@ if data:
                     string_element = list1[count+2].strip()
                     num1 = list(string_element.split(" "))
                     if num1[0].isnumeric():
+                    # validates if the data is an integer    
                         list_light.append(int(num1[0]))
+                    else:
+                        print("Data is not an integer.")
                 count += 1
         elif k == "Age":
             for i in list1:
@@ -60,7 +64,10 @@ if data:
                     string_element = list1[count+2].strip()
                     num1 = list(string_element.split(" "))
                     if num1[0].isnumeric():
+                    # validates if the data is an integer    
                         list_age.append(int(num1[0]))
+                    else:
+                        print("Data is not an integer.")    
                 count += 1
         elif k == "Memory":
             for i in list1:
@@ -68,10 +75,14 @@ if data:
                     string_element = list1[count+2].strip()
                     num1 = list(string_element.split(" "))
                     if num1[0].isnumeric():
-                        
+                    # validates if the data is an integer    
                         list_memory.append(int(num1[0]))
+                    else:
+                        print("Data is not an integer.")    
                 count += 1        
-      
+else:
+    print("Data from firebase is not there")
+# Gets all the required the infromation from the user in order to fill all the parameters    
 Sum = sum(list_memory)
 average_memory = Sum / len(list_memory)
 median = round(len(list_memory) / 2) - 1
@@ -96,7 +107,7 @@ if undereightheen == "True":
 else:
     under = False
 age_level2 = age_level(read1,list_age[-1],under)
-
+# the program tells the user of what the outcome is from all the datasets
 if(age_level2 > 150 and average_memory > 15):
     print("Lower age with comes with higher memory attention span")
 elif(age_level2 < 150 and average_memory < 15):
