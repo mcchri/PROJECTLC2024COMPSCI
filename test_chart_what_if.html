@@ -13,9 +13,10 @@
     </div>
 
     <script type="module">
+        // import modules for firebase
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
         import { getDatabase, ref, onChildAdded } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
-
+        // This is the configuration for firebase
         const firebaseConfig = {
             apiKey: "AIzaSyBc8kckOZJK6SWu9l2wTdu_0670eeZD0dE",
             authDomain: "comp-sci-c8d0a.firebaseapp.com",
@@ -32,20 +33,25 @@
         const app = initializeApp(firebaseConfig);
 
         const db = getDatabase();
-
+        // These are the nodes from my database in firebase
         const nodes = ['Age','Light','Memory'];
-
+        // initalise a list of colours
+        const colors = ['#FF5733', '#33FF57', '#5733FF', '#FF33E9', '#33E9FF', '#E9FF33', '#3333FF', '#FF3333', '#33FFEA', '#EA33FF'];
+        // maps through the nodes
         const dataRef = nodes.map(node => ref(db, node + '/'));
-
+        // gets the chart onto the html
         const ctx = document.getElementById('dataChart').getContext('2d');
+        // initalise the chart
         const dataChart = new Chart(ctx, {
             type: 'line',
             data: {
                 labels: [],
+                // the dataset are the nodes from firebase
                 datasets: nodes.map((node, index) => ({
                     label: node,
                     data: [],
-                    borderColor: `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 1)`,
+                    // chooses a random colour from the colour list
+                    borderColor: colors[Math.floor(Math.random() * colors.length)],
                     borderWidth: 1,
                     fill: false
                 }))
@@ -61,25 +67,37 @@
             }
         });
         
-       
-        const level_list = [];
+       // for each data in the list, it gets the data value from firebase
         dataRef.forEach((ref, index) => {
+        // When a new child is added to the node it will run the following code.
     onChildAdded(ref, (snapshot) => {
+        
         var date = new Date(snapshot.key * 1000);
         const data = snapshot.val();
+        // the value and timestamp of the nodes are taken here
         const value = parseInt(data[Object.keys(data)[index]]);
         const timestamp = String(data["time_taken_at"]);
-        if (!isNaN(value) && value > 0 && value < 100) {
-            if(timestamp != NaN){
-            dataChart.data.labels.push(timestamp);
+            // checks for the three nodes and pushes the value of the corresponding key to the chart
+            if(index == 1){
+                dataChart.data.datasets[index].data.push(parseInt(data["Light_level"]));
+            }else if(index == 2){
+                if(timestamp != NaN){
+                    
             }
-            dataChart.data.datasets[index].data.push(value);
-            dataChart.data.labels = dataChart.data.labels.slice(-31); //neagtive slice to only show
+                
+                dataChart.data.datasets[index].data.push(parseInt(data["A_Memory_level"]));
+            }else if(index==0){
+                dataChart.data.datasets[index].data.push(parseInt(data["Age"]));
+                dataChart.data.labels.push(timestamp);
+            }    
+            
+            // takes the data from the last 31 in the list
+            dataChart.data.labels = dataChart.data.labels.slice(-31); 
             dataChart.data.datasets[index].data = dataChart.data.datasets[index].data.slice(-31);//the last 31 values on each axis
             dataChart.update();
         }
         
-    });
+    );
     
 });
 
