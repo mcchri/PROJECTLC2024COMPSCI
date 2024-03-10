@@ -1,84 +1,90 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Research</title>
-        <style>
-            body {background-color: #5CDB95;}
-            h1   {color: #05386B;}
-            p    {color: #379683;}
-            h3   {color: black; text-align: left; padding-left: 5%; padding-right: 5%;}
-            h2   {color: #05386B;}
-            a    {color: #EDF5E1;}
-            #internal {color: blue;}
-            img  {padding-right: 5%; padding-left: 5%; padding-top: 7%;}
-            </style>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan</title>
+    <style>
+        body {background-color: #5CDB95; text-align: center;}
+        h1   {color: #05386B;}
+        p    {color: #379683;}
+        h3   {color: rgb(0, 0, 0); text-align: center; padding-left: 5%; padding-right: 5%;}
+        h2   {color: #05386B;}
+        a    {color: #EDF5E1;}
+        #internal {color: blue;}
+        img  {padding-right: 5%; padding-left: 5%;}
+        .req {text-align: left; font-size: larger;}
+        </style>
+</head>
+<body>
+    <p><h1>Plan and design</h1></p>
+    <p><h2>The game</h2></p>
+    <p><h3>
     
-    <body>
-        <h1 style="font-size:65px; text-align:center; font-family: Georgia, 'Times New Roman', Times, serif;">My Research</h1>
-        <div style="text-align:center; font-family:Arial, Helvetica, sans-serif; position: static; border: 20px dashed #73AD21;
-        margin: 50px 10% 50px 10%;" id = "internal"><p><a href="index.html">Back to index</a></p>
-        <p><u><h2>What connection exists between computer science and well-being?</h2></u>
-        <br /> <h3>Computer science can be implemented with health and mental-being in many ways for example how Fitbits are used to count the steps or how some apps on our phones
-            increase our health. The health factors include regular exercise, nutritional diet, enough sleep, self-esteem, achieving goals, and mental clarity. I researched different
-            systems that were related to well-being and improving the brain. Apps Lumosity (improves memory by playing games), MindNode (helps to brainstorm), and Cognifit (helps to develop the brain).
-            I chose a system that correlates with Lumosity because it is a game on the LED screen of the micro:bit that helps to improve memorization. I rejected the other systems due to their complexity.
-    </h3></p><br />
-        <h2><u>My chosen system:</u></h2><br />
-        <h3>My idea is a recognizable game called 'Bop It!', which prioritizes how well you can memorize certain patterns. My idea is much more simple because there are only 4 patterns to memorize.
-            Here are the following patterns.
-
-        </h3><br />
-        <!--Place 4 images of the pattern here-->
-        <img src="Screenshot (51).png" width="120" height="120">
-        <img src="Screenshot (52) - Copy.png" width="120" height="120">
-        <img src="Screenshot (53).png" width="120" height="120">
-        <img src="Screenshot (54).png" width="120" height="120">
-        <br /><h3>The game shows one pattern and disappears, the user has to click a button for that pattern and then the number of patterns increases if the player gets the sequence right but if the player gets it wrong they lose the game and restart to one pattern.
-            The code will be written on the micro:bit website and combined with Python to send the information to Firebase. The micro:bit code is delivered to the micro:bit via the cable and the pattern output is shown on the LED screen.
-            There are two LEDs, one green and one red to signify if the player got the sequence correct or wrong. This game is targeted to young people from the age of 12 to the age of 18 because young people nowdays are surrounded by technology that 
-            depletes their attention span.
-        </h3>
-        <u><h2>Objectives:</h2></u><br />
-        <h2><i>Basic Requirements:</i></h2><br />
-        <h3>My pattern game is fully automated due to the program running in the micro:bit and the data being sent to the firebase automatically by Python.
-            There are 4 buttons which are analogue inputs. I will have a website that displays a graph of all my data using Javascript.
-            The game will be played 5 times and from that data, I can predict how much the player has increased their attention span using Python code.
-        </h3><br />
-        <h2><i>Advanced Requirements:</i></h2><br />
-        <h3><u><i>My 2 what-if questions are:</i></u>
-            <ol>
-            <li>What if the temperature  affects how well the player can memorize the sequence?</li>
-            <br>
-            <li>What if the age of the player can influence how well they can perform memorizing the sequence?</li>
-            </ol>
-        </h3>
-        <h3>
-        Here is my research for which I have acquired from a questionnaire.    
-        </h3>
-        <img src="Screenshot (41).png" width="40%" height="40%">
-        <img src="Screenshot (42).png" width="40%" height="40%"> 
-        <img src="Screenshot (43).png" width="40%" height="40%">
-        <img src="Screenshot (44).png" width="40%" height="40%">
-        <img src="Screenshot (45).png" width="40%" height="40%">
-        <img src="Screenshot (46).png" width="40%" height="40%"> 
-        <img src="Screenshot (47).png" width="40%" height="40%">
-        <img src="Screenshot (48).png" width="40%" height="40%">
-        <img src="Screenshot (49).png" width="40%" height="40%">
-        <img src="Screenshot (50).png" width="40%" height="40%">
-        <p><h3>
-            References:   
-            </h3></p>
-        <ul>
-            <li>https://www.lumosity.com/en/</li>
-            <li>https://www.mindnode.com/</li>
-            <li>https://www.cognifit.com/</li>
-            <li>https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8598050/</li>
-        </ul>              
-        <!--Put a graph here to resemble the attention span--></div>
-        
-    </body>
-
-</html>    
+The memory game is coded into the microbit, featuring four patterns for memorization.
+Levels and pattern count increase until the user makes an incorrect sequence input.
+The game's functionality is detailed in a flow chart.
+Inputs include the light sensor (analog) and buttons (digital), while sound (analog) and LEDs (digital) serve as outputs.
+    </p></h3>   
+    <h2>Microbit flowcharts</h2>
+    <p><img src="GAME_DIAGRAM.png" alt="Game Diagram" width="30%" height="30%"></p>
+    <p><img src="Screenshot (5).png" alt="Game Diagram" width="30%" height="30%"></p>
+    <h2>The age input:</h2>
+    <p><h3>   
+        The game begins with the user inputting their age via button A, initializing
+        age to 0. Pressing button A increments age by 10, button B increases it by one,
+        and pin 0 selects the game level (speed of LED screen images).   
+    </p></h3>
+    <h2>The level input:</h2>
+    <p><img src="Screenshot (15).png" alt="Game Diagram" width="30%" height="30%"></p>
+    <p><h3>If button B is pressed the level increases by one, if the level is equal to 3 and the button B is pressed then the 
+        level is equal to 1. If pin 0 is pressed then record the current light level (ANALOG INPUT). Output the text "level 1", initialise
+        the game level, iterator and the list of LEDs. 
+    </h3></p>
+    <h2>The LED output:</h2>
+    <p><img src="Screenshot (17).png" alt="Game Diagram" width="30%" height="30%"></p>
+    <p><h3>
+        A random number (1-4) is selected and added to a list. Each number in the list corresponds to a
+        symbol: 1 for heart, 2 for skull, 3 for smile, and 4 for B. The iterator traverses the list,
+        incrementing with each check. If the iterator reaches the last number, the game proceeds to button logic.
+        Correct button presses prompt adding another random number; otherwise, the game ends.
+    </h3></p>
+    <h2>The button logic:</h2>
+    <p><img src="Screenshot (18).png" alt="Game Diagram" width="30%" height="30%"></p>
+    <p><img src="Screenshot (8).png" alt="Game Diagram" width="30%" height="30%"></p>
+    <p><img src="Screenshot (9).png" alt="Game Diagram" width="30%" height="30%"></p>
+    <p><h3>
+     
+Initialize an iterator. Assign button_input values based on button or pin presses.
+ If input matches the first item in the list and iterator equals list size minus 1,
+  reset iterator, output a happy noise, and display all symbols. If iterator doesn't
+   match the list, increment it until a wrong button is pressed. Output score and light
+    sensitivity if wrong, then end game with a sad noise.
+    </h3></p>
+    <h2>The architecture of my design and the technologies used:</h2>
+    <p><img src="Screenshot (10).png" alt="Game Diagram" width="30%" height="30%"></p>
+    <p><h3>
+        The microbit recieves the code from the PC in order to execute the game that I made. The light level and the level of the game is send back to the PC. I used pyhton to send my data to 
+        the firebase. I retrieved the filtered data with javascript and made a graph using the graph module.
+       </h3></p>
+       <div class="req">
+       <h2>Hardware:</h2>
+       <ol>
+            <li>PC</li>
+            <li>Microbit</li>
+       </ol>
+       <h2>Software:</h2>
+       <ol>
+            <li>Makecode for microbit</li>
+            <li>Python</li>
+            <li>Javascript</li>
+       </ol>
+       </div>
+    <p><h2>User Requirements:</h2></p>   
+    <p><h3>This game enhances attention span by requiring players to memorize LED patterns.
+        Improved attention span boosts productivity and stimulation, crucial for overall well-being.
+        Room light levels influence pattern memorization effectiveness.
+        For users seeking attention span enhancement, this game aligns with their needs.
+    </h3></p>
+</body>
+</html>
