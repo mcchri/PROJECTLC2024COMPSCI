@@ -10,17 +10,17 @@ PID_MICROBIT = 516
 VID_MICROBIT = 3368
 TIMEOUT = 0.1
 # this functoin automatically connects to the comport of the serial
-def find_comport(pid, vid, baud):
+def find_comport(pid1, vid1, baud1):
     ''' return a serial port '''
-    ser_port = serial.Serial(timeout=TIMEOUT)
-    ser_port.baudrate = baud
+    ser_port1 = serial.Serial(timeout=TIMEOUT)
+    ser_port1.baudrate = baud1
     ports = serial.tools.list_ports.comports()
     print('scanning ports')
     for p in ports:
-        if (p.pid == pid) and (p.vid == vid):
-            print('found target device pid: {} vid: {} port: {}'.format(p.pid, p.vid, p.device))
-            ser_port.port = str(p.device)
-            return ser_port
+        if (p.pid1 == pid1) and (p.vid1 == vid1):
+            print('found target device pid: {} vid: {} port: {}'.format(p.pid1, p.vid1, p.device))
+            ser_port1.port = str(p.device)
+            return ser_port1
     return None
 
 ser = find_comport(PID_MICROBIT, VID_MICROBIT, 115200)
@@ -37,27 +37,27 @@ def firebase_read_reference(ref1,aux,ser1,timestamp,mem1):
     date_time = datetime.fromtimestamp(timestamp)
     time_taken = str(date_time.strftime("%S %M %H %d %m %Y"))
     time_taken_key = date_time.strftime("%Y %m %d %H %d %m %Y")
-    print(str(date_time.strftime("%S %M %H %d %m %Y")))
+    #print(str(date_time.strftime("%S %M %H %d %m %Y")))
     #add the values into the dictionary of the nodes
     if aux == 0:
-        time.sleep(0.1)
+        time.sleep(1)
         ref1.update({timestamp:{'Memory_level':var1, 'Location':source}})
         print("Memory:",var1)
         return var1
     if aux == 1:
-        time.sleep(0.1)
+        time.sleep(1)
         ref1.update({timestamp:{'Light_level':var1, 'Location':source, 'Memory_level':mem1}})
         print("Light_level:",var1)
     elif aux == 2:
-        time.sleep(0.1)
+        time.sleep(1)
         ref1.update({timestamp:{'Age':var1, 'Location':source, 'Memory_level':mem1}})
         print("Age:",var1)
     elif aux == 3:
-        time.sleep(0.1)
+        time.sleep(1)
         ref1.update({timestamp:{'Score':var1, 'Location':source}})
         print("Score:",var1)
     else:
-        time.sleep(0.1)
+        time.sleep(1)
         ref1.update({timestamp:{'Level':var1, 'Location':source}})
         print("Level:",var1)
     
@@ -74,7 +74,7 @@ while True:
     timestamp1 = int(time.time())
     if ser.readline().strip().decode('utf-8') == 'lose':
        
-        time.sleep(0.1)
+        time.sleep(1)
         iterator = 0
         y=0
         ref = db.reference().child('Memory')
