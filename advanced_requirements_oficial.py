@@ -4,7 +4,7 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
 # path to the private key
-cred = credentials.Certificate("C:/Users/k_tur/OneDrive/Documents/cs/config.json")
+cred = credentials.Certificate("C:/Users/19CTurean.ACC/Documents/config.json")
 # URL to the database
 firebase_admin.initialize_app(cred,{'databaseURL': 'https://comp-sci-c8d0a-default-rtdb.europe-west1.firebasedatabase.app/'})
 # get a reference to our db
@@ -30,15 +30,54 @@ def light_level(loc,light_val,on_or_off_light):
 def age_level(read,age,under_age):
     if read == "Yes":
         if under_age:
-            return age*10
+            age_level2 = age*10
         else:
-            return int(age/2)
+            age_level2 = int(age/2)
     elif read == "No":
          if under_age:
-            return age*5
+            age_level2 = age*5
     else:
-            return int(age/2)
-#def specific_age(list_age1,memory1,user_age):
+            age_level2 = int(age/2)
+    # the program tells the user of what the outcome is from all the datasets
+    if(age_level2 > 150 and average_memory > 15):
+        print("The overall age is low and the memory is high therfore the well-being of the contestants is quite high")
+    elif(age_level2 < 150 and average_memory < 15):
+        print("The overall age is high and the memory is low therfore the well-being of the contestants is quite normal due to the age affectimg the attention span")
+    elif(light_level > 500 and average_memory > 15):
+        print("The overall light intensity is high and the memory is high therfore the well-being of the contestants is quite high")
+    elif(light_level < 500 and average_memory < 15):
+        print("The overall light intensity is low and the memory is low therfore the well-being of the contestants is quite normal")
+    else:
+        print("There is an anonamly in the data meaning some young people have low attention span or older people having higher attention span, in the case of the young people they need to improve their mental well-being.")
+        
+def specific_age(list_age1,list_memory1,user_age1,user_score1,age_unit1):
+    sum1 = 0
+    count = 0
+    num=0
+    limit = len(list_age1) - 64
+    for i in list_age1:
+    # This for loop gets the age value and its corresponding memory value by selecting its index
+        if int(i / 10) == age_unit1 and count >= limit:
+            index1 = len(list_age1) - list_age1.index(i)
+            if index1 < 65:
+                num+=1
+                sum1 += list_memory1[index1]
+        count += 1
+    gen_sum = int(sum1/num)
+    # Calculates the percentage of your memory score compared to your age group    
+    percent = int((gen_sum/user_memory)*100-100)*-1
+    print(gen_sum, "The memory score of your age group")
+    print(user_memory, "Your memory score")
+    if percent > 100:
+        percent = percent - 100
+    if gen_sum < user_memory:
+        print("You have better attention span than your average age group, that means your mental well-being is strong")
+        print("You have",percent,"% more attention span than your age group")
+    if gen_sum < user_memory:
+        print("You have worser attention span than your average age group, that means your mental well-being is not that strong. I advise you do practice more mental well-being activities.")
+        print("You have",percent,"% less attention span than your age group")
+    else:
+        print("You are spot on the average memory score of your age group, its up to you if you want to improve your mental well-being.")
     
 # the folllowing code extracts memory, light and age values from firebase
 list_memory = []
@@ -155,50 +194,12 @@ else:
     under = False
 age_level2 = age_level(read1,list_age[-1],under)
 
-# the program tells the user of what the outcome is from all the datasets
-if(age_level2 > 150 and average_memory > 15):
-    print("The overall age is low and the memory is high therfore the well-being of the contestants is quite high")
-elif(age_level2 < 150 and average_memory < 15):
-    print("The overall age is high and the memory is low therfore the well-being of the contestants is quite normal due to the age affectimg the attention span")
-elif(light_level > 500 and average_memory > 15):
-    print("The overall light intensity is high and the memory is high therfore the well-being of the contestants is quite high")
-elif(light_level < 500 and average_memory < 15):
-    print("The overall light intensity is low and the memory is low therfore the well-being of the contestants is quite normal")
-else:
-    print("There is an anonamly in the data meaning some young people have low attention span or older people having higher attention span, in the case of the young people they need to improve their mental well-being.")  
+  
 user_age = int(input("Input your age"))
 age_unit = int(user_age/10)
 
-sum1 = 0
-count = 0
-num=0
-limit = len(list_age) - 64
 user_score = int(input("input your score"))
 user_level = int(input("input your level"))
 user_memory = int((user_score+user_level)/2)
 
-# This for loop gets the age value and its corresponding memory value by selecting its index
-for i in list_age:
-    
-    if int(i / 10) == age_unit and count >= limit:
-        index1 = len(list_age) - list_age.index(i)
-        if index1 < 65:
-            num+=1
-            sum1 += list_memory[index1]
-    count += 1
-    
-# Calculates the percentage of your memory score compared to your age group    
-gen_sum = int(sum1/num)
-percent = int((gen_sum/user_memory)*100-100)*-1
-print(gen_sum, "The memory score of your age group")
-print(user_memory, "Your memory score")
-if percent > 100:
-    percent = percent - 100
-if gen_sum < user_memory:
-    print("You have better attention span than your average age group, that means your mental well-being is strong")
-    print("You have",percent,"% more attention span than your age group")
-if gen_sum < user_memory:
-    print("You have worser attention span than your average age group, that means your mental well-being is not that strong. I advise you do practice more mental well-being activities.")
-    print("You have",percent,"% less attention span than your age group")
-else:
-    print("You are spot on the average memory score of your age group, its up to you if you want to improve your mental well-being.")
+specific_age(list_age,list_memory,user_age,user_memory,age_unit)    
