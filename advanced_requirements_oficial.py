@@ -59,7 +59,8 @@ def specific_age(list_age1,list_memory1,user_age1,user_score1,age_unit1):
     # This for loop gets the age value and its corresponding memory value by selecting its index
         if int(i / 10) == age_unit1 and count >= limit:
             index1 = len(list_age1) - list_age1.index(i)
-            if index1 < 65:
+            if index1 < 68:
+                index2 = index1 - 37
                 num+=1
                 sum1 += list_memory1[index1]
         count += 1
@@ -152,7 +153,7 @@ if data:
         elif k == "Memory":
             count = 0
             for i in list1:
-                if i == "A_Memory_level":
+                if i == "Memory_level":
                     string_element = list1[count+2].strip()
                     num1 = list(string_element.split(" "))
                     if num1[0].isnumeric():
@@ -202,4 +203,4 @@ user_score = int(input("input your score"))
 user_level = int(input("input your level"))
 user_memory = int((user_score+user_level)/2)
 
-specific_age(list_age,list_memory,user_age,user_memory,age_unit)    
+specific_age(list_age,list_memory2,user_age,user_memory,age_unit)    
