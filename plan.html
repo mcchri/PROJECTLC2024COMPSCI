@@ -19,63 +19,55 @@
 <body>
     <p><a href="index.html">Back to index</a></p>
     <p><h1>Plan and design</h1></p>
-    <p><h2>Method</h2></p>
+    
      <p><h3>
     I chose the Agile method on making my project because it is very flexible and suits my requirements.
     </p></h3> 
-    <p><h2>Universal Design</h2></p>
+    
      <p><h3>
     Universal design concepts can be seen with the game and the website. The simple understood button symbols.
     </p></h3> 
-    <u><h2>Objectives:</h2></u><br />
         <h2><i>Basic Requirements:</i></h2><br />
         <h3>My system is fully automated, with data sent automatically to Firebase from the microbit and being sent to javascript to automatically create a graph.</h3>
         <br />
         <h2><i>Advanced Requirements:</i></h2><br />
-        <h3>I have personally created a dataset of wellbeing data containing user age, memory score, and light level.
-        This data relates to well-being since age and environmental light impact attention span, affecting with overall well-being.
-        Using python, I made a a program comparing users` memory scores across age groups. Graphically presenting age and light data, the program output integers 
-        based on the three validated parameters.</h3>
+        <h3>A dataset of wellbeing data, including user age, memory score, and light level,
+            was created and a Python program was developed to compare memory scores across age groups.
+            Graphically presenting with a graph. </h3>
         <h2>Model</h2>
         <h3>My model is a feedback model, it gives back feedback for the user and helps the user to understand what state of mental well-being they are in.</h3>
         <h3><u><i>My 2 what-if questions are:</i></u>
             <ol>
-            <li>What if the age affects how well the player can memorize the sequence? The three validated parameters are, is the user reading books, is the user under 18,
-            what is the average age of the total users who played the game. These parameters correlate with the mental age of the person. </li>
+            <li>What if the age affects how well the player can memorize the sequence?
+                The three validated parameters are user reading books, user under 18,
+                and average age of total game players, which correlate with mental age.  </li>
             <br>
-            <li>What if the light intensity affects how well the player can memorize the sequence? The three validated parameters are, Where is the location, is there a sufficient light 
-                source and what is the average light intensity of light for all data. These parameters correlate with how the environment affects thinking and therefore well-being.</li>
-            <br>
+            <li>What if the light intensity affects how well the player can memorize the sequence?The three validated parameters, location, sufficient light source, and average light intensity,
+                are crucial in understanding how the environment impacts thinking and well-being.<br>
             </ol>  
     <p><h2>The game</h2></p>
     <p><h3>
-The memory game is coded into the microbit, featuring four patterns for memorization.
-Levels and pattern count increase until the user makes an incorrect sequence input.
-The game's functionality is detailed in a flow chart.
-Inputs include the light sensor (analog) and buttons (digital), while sound (analog) and LEDs (digital) serve as outputs.
+        The microbit memory game uses four patterns for memorization,
+        with levels and pattern count increasing until incorrect input is made.
+        Inputs include light sensor (analog), buttons (digital), sound(analog), and LEDs(digital).
     </p></h3>   
     <h2>Microbit flowcharts</h2>
     <p><img src="GAME_DIAGRAM.png" alt="Game Diagram" width="30%" height="30%"></p>
     <p><img src="Screenshot (5).png" alt="Game Diagram" width="30%" height="30%"></p>
     <h2>The age input:</h2>
     <p><h3>   
-        The game begins with the user inputting their age via button A, initializing
-        age to 0. Pressing button A increments age by 10, button B increases it by one,
-        and pin 0 selects the game level (speed of LED screen images).   
+        The user inputs their age, which is then adjusted by pressing buttons A, B, +10 and +1 respectively.   
     </p></h3>
     <h2>The level input:</h2>
     <p><img src="Screenshot (15).png" alt="Game Diagram" width="30%" height="30%"></p>
-    <p><h3>If button B is pressed the level increases by one, if the level is equal to 3 and the button B is pressed then the 
-        level is equal to 1. If pin 0 is pressed then record the current light level (ANALOG INPUT). Output the text "level 1", initialise
-        the game level, iterator and the list of LEDs. 
+    <p><h3>Press button B to increase level, pin 0 to record light level (ANALOG INPUT), output "level 1",
+           initialize game level, iterator, and LED list. 
     </h3></p>
     <h2>The LED output:</h2>
     <p><img src="Screenshot (17).png" alt="Game Diagram" width="30%" height="30%"></p>
     <p><h3>
-        A random number (1-4) is selected and added to a list. Each number in the list corresponds to a
-        symbol: 1 for heart, 2 for skull, 3 for smile, and 4 for B. The iterator traverses the list,
-        incrementing with each check. If the iterator reaches the last number, the game proceeds to button logic.
-        Correct button presses prompt adding another random number; otherwise, the game ends.
+        A random is added to a list representing symbols, and the iterator iterates through the list,
+        incrementing each check until the last number is reached.
     </h3></p>
     <h2>The button logic:</h2>
     <p><img src="Screenshot (18).png" alt="Game Diagram" width="30%" height="30%"></p>
@@ -83,11 +75,8 @@ Inputs include the light sensor (analog) and buttons (digital), while sound (ana
     <p><img src="Screenshot (9).png" alt="Game Diagram" width="30%" height="30%"></p>
     <p><h3>
      
-Initialize an iterator. Assign button_input values based on button or pin presses.
- If input matches the first item in the list and iterator equals list size minus 1,
-  reset iterator, output a happy noise, and display all symbols. If iterator doesn't
-   match the list, increment it until a wrong button is pressed. Output score and light
-    sensitivity if wrong, then end game with a sad noise.
+Initialize an iterator, assign button input values, reset if inputs matches first item,
+increment if wrong, output score and light sensitivity, end game with sad noise.
     </h3></p>
     <h2>The architecture of my design and the technologies used:</h2>
     <p><img src="Screenshot (10).png" alt="Game Diagram" width="30%" height="30%"></p>
