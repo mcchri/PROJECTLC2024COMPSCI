@@ -222,11 +222,13 @@
               </tr>
           </table>            
     <p><h2>Problems I have encountered</h2></p>          
-    <p><h3>When making the graph with Javascript using the module ChartJS I stumbled across a problem, and the graph didnt work.
-        All I had to do was to change the rules in Firebase in order to read and write the data from Firebase.
-    </h3></p>
     <p><h3>I had trouble with the data labels for the chart js. The labels wouldnt work out as a timestamp for the x-axis for the graph. 
-        I overcame this problem by using the python function time.time() to get a timestamp and 
+        I overcame this problem by adding a new key in the node called time taken and pushed that value onto the list of values that were placed into the x-axis.
+    </h3></p>
+    <p><img src="Screenshot (5).png" alt="Game Diagram" width="30%" height="30%"></p>
+    <p><h2>Important pieces of code</h2></p>
+    <p><h3>One of the importnat pieces of code in my project is the perdiction model for the what if question for age. It tells the user by how much percentage the user is 
+        worse or better than the people with the same age range with the user.
     </h3></p>
 </body>
 </html>
