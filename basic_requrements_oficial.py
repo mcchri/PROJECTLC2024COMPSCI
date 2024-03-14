@@ -43,8 +43,8 @@ else:
     print("Data from firebase is not in the right form.")
 # average is sum / length of the list    
 Sum = sum(list_memory)
-average = Sum / len(list_memory)
-print("average memory span is",round(average),"points.")
+average = float(Sum / len(list_memory))
+print("average memory span is",average,"points.")
 # median of the list
 median = round(len(list_memory) / 2) - 1
 list_memory2 = list_memory
@@ -53,3 +53,13 @@ print("median memory span is",list_memory2[median],"points.")
 print("Modal number of memory is",(statistics.mode(list_memory2)),"points.")
 # calls the function and perdicts whether your memory level is sufficient enough to play another round of the game
 memory_level(average,list_memory2[median],statistics.mode(list_memory2))
+import matplotlib.pyplot as plt
+
+x_axis = ["average","median","mode"]
+y_axis = [average]
+
+plt.bar(x_axis, y_axis)
+plt.title('title name')
+plt.xlabel('x_axis name')
+plt.ylabel('y_axis name')
+plt.show()
