@@ -17,104 +17,31 @@
         </style>
 </head>
 <body>
-    <p><a href="index.html">Back to index</a></p>
-    <p><h1>Plan and design</h1></p>
-    <p><h2>Method</h2></p>
-     <p><h3>
-    I chose the Agile method on making my project because it is very flexible and suits my requirements.
-    </p></h3> 
-    <p><h2>Universal Design</h2></p>
-     <p><h3>
-    Aspects of universal design can be found in the model of the game on the micro bit. There are four patterns all are universally recognised and the sound when the user loses or win is universally understood.
-    </p></h3> 
-    <u><h2>Objectives:</h2></u><br />
-        <h2><i>Basic Requirements:</i></h2><br />
-        <h3>My pattern game is fully automated due to the program running in the micro:bit and the data being sent to the firebase automatically by Python.
-            There are 4 buttons which are analogue inputs. I will have a website that displays a graph of all my data using Javascript.
-            The game will be played 5 times and from that data, I can predict how much the player has increased their attention span using Python code.
-        </h3><br />
-        <h2><i>Advanced Requirements:</i></h2><br />
-        <h3>I have personally created a dataset of wellbeing data, it shows the age of the user and the memory score as well as light level.
-        These datasets are related to wellbeing becasue age and the light in the environment affects a persons attention span therefore it correlates to their well-being.
-        I created a program on python that shows how well the users memory score is compared to their age group. There are 3 validated parameters based on its relation 
-        to the what if question. The age and light data are graphically presented with a graph and output integers.</h3>
-        <h2>Model</h2>
-        <h3>My model is a feedback model, it gives back feedback for the user and helps the user to understand what state of mental well-being they are in.</h3>
-        <h3><u><i>My 2 what-if questions are:</i></u>
-            <ol>
-            <li>What if the age affects how well the player can memorize the sequence? The three validated parameters are, is the user reading books, is the user under 18,
-            what is the average age of the total users who played the game. These parameters correlate with the mental age of the person. </li>
-            <br>
-            <li>What if the light intensity affects how well the player can memorize the sequence? The three validated parameters are, Where is the location, is there a sufficient light 
-                source and what is the average light intensity of light for all data. These parameters correlate with how the environment affects thinking and therefore well-being.</li>
-            <br>
-            </ol>  
-    <p><h2>The game</h2></p>
-    <p><h3>
-The memory game is coded into the microbit, featuring four patterns for memorization.
-Levels and pattern count increase until the user makes an incorrect sequence input.
-The game's functionality is detailed in a flow chart.
-Inputs include the light sensor (analog) and buttons (digital), while sound (analog) and LEDs (digital) serve as outputs.
-    </p></h3>   
-    <h2>Microbit flowcharts</h2>
-    <p><img src="GAME_DIAGRAM.png" alt="Game Diagram" width="30%" height="30%"></p>
-    <p><img src="Screenshot (5).png" alt="Game Diagram" width="30%" height="30%"></p>
-    <h2>The age input:</h2>
-    <p><h3>   
-        The game begins with the user inputting their age via button A, initializing
-        age to 0. Pressing button A increments age by 10, button B increases it by one,
-        and pin 0 selects the game level (speed of LED screen images).   
-    </p></h3>
-    <h2>The level input:</h2>
-    <p><img src="Screenshot (15).png" alt="Game Diagram" width="30%" height="30%"></p>
-    <p><h3>If button B is pressed the level increases by one, if the level is equal to 3 and the button B is pressed then the 
-        level is equal to 1. If pin 0 is pressed then record the current light level (ANALOG INPUT). Output the text "level 1", initialise
-        the game level, iterator and the list of LEDs. 
+    <h1>Evaluation</h1>
+    <p><h3>Overall, I am not fully satisfied with the result of this project. There are zero errors with running the circuit game but there are some errors with retrieving data from the Firebase as I needed to correspond with the user's age and the user's memory but they were in different nodes. So the code wasn't the best because I had to manually code constants into the code to match the database.
+           The graphs are not the best because it is hard to see the correlation between the digital and analog inputs between the memory score but only the level and score are proportional to the memory score because the memory score is made by multiplying the score and the level. It did achieve the basic and advanced requirements but I wanted a more scientific approach to the forecast prediction.
+           Yes, it did forecast the memory percentage compared to your age group but I wanted it to show the time of the attention span and not how age and light affect it furthermore I couldn't take time as a proper input or output so that was one of the reasons why I couldn't do what I wanted to achieve. 
+           I am happy with how the Micro bit game turned out because it is a fun and interactive game that anyone can play but it is meant for ages 12 to 18 to improve attention span, my 6-year-old sister was able to play the game because I included universal designs for the symbol and its easy concept was easy to grasp. 
+           If I were to do it again I would plan out how I was going to do my whole project more effectively. If I would iterate further with my project I would have the time interval between the patterns appearing increase because then it would definitely test the attention span and improve the user's attention span as well.   
     </h3></p>
-    <h2>The LED output:</h2>
-    <p><img src="Screenshot (17).png" alt="Game Diagram" width="30%" height="30%"></p>
-    <p><h3>
-        A random number (1-4) is selected and added to a list. Each number in the list corresponds to a
-        symbol: 1 for heart, 2 for skull, 3 for smile, and 4 for B. The iterator traverses the list,
-        incrementing with each check. If the iterator reaches the last number, the game proceeds to button logic.
-        Correct button presses prompt adding another random number; otherwise, the game ends.
-    </h3></p>
-    <h2>The button logic:</h2>
-    <p><img src="Screenshot (18).png" alt="Game Diagram" width="30%" height="30%"></p>
-    <p><img src="Screenshot (8).png" alt="Game Diagram" width="30%" height="30%"></p>
-    <p><img src="Screenshot (9).png" alt="Game Diagram" width="30%" height="30%"></p>
-    <p><h3>
-     
-Initialize an iterator. Assign button_input values based on button or pin presses.
- If input matches the first item in the list and iterator equals list size minus 1,
-  reset iterator, output a happy noise, and display all symbols. If iterator doesn't
-   match the list, increment it until a wrong button is pressed. Output score and light
-    sensitivity if wrong, then end game with a sad noise.
-    </h3></p>
-    <h2>The architecture of my design and the technologies used:</h2>
-    <p><img src="Screenshot (10).png" alt="Game Diagram" width="30%" height="30%"></p>
-    <p><h3>
-        The microbit recieves the code from the PC in order to execute the game that I made. The light level and the level of the game is send back to the PC. I used pyhton to send my data to 
-        the firebase. I retrieved the filtered data with javascript and made a graph using the graph module.
-       </h3></p>
-       <div class="req">
-       <h2>Hardware:</h2>
-       <ol>
-            <li>PC</li>
-            <li>Microbit</li>
-       </ol>
-       <h2>Software:</h2>
-       <ol>
-            <li>Makecode for microbit</li>
-            <li>Python</li>
-            <li>Javascript</li>
-       </ol>
-       </div>
-    <p><h2>User Requirements:</h2></p>   
-    <p><h3>This game enhances attention span by requiring players to memorize LED patterns.
-        Improved attention span boosts productivity and stimulation, crucial for overall well-being.
-        Room light levels influence pattern memorization effectiveness.
-        For users seeking attention span enhancement, this game aligns with their needs.
-    </h3></p>
+    <h1>References</h1>
+    <ul>
+        <li>www.lumosity.com (n.d.). Puzzles to help brain activity [online] available at <a href="https://www.lumosity.com/en/">https://www.lumosity.com/en/</a></li>
+        <li>www.mindnode.com (n.d.). brain games [online] available at <a href="https://www.mindnode.com/">https://www.mindnode.com/</a></li>
+        <li>Frederic Dick (2021). Article about how memory affects young people [online] available at<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8598050/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8598050/</a></li>
+
+        <li>https://www.mindnode.com/</li>
+        <li>https://www.cognifit.com/</li>
+        <li>https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8598050/</li>
+    </ul>   
+    <h1>Word count</h1>
+    <ul>
+        <li>Meeting the brief: </li>
+        <li>Investigation: 429</li>
+        <li>Plan and design: 449</li>
+        <li>Create: 845</li>
+        <li>Evaluation: 317</li>
+    </ul>           
+    <!--Put a graph here to resemble the attention span--></div>
 </body>
 </html>
