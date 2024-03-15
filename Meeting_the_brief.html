@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan</title>
+    <style>
+        body {background-color: #5CDB95; text-align: center; font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto;}
+        h1   {color: #05386B; font-size: 2em;}
+        p    {color: #379683; font-size: 1em;}
+        h3   {color: rgb(0, 0, 0); text-align: center; padding-left: 5%; padding-right: 5%; font-size: 1.2em;}
+        h2   {color: #05386B; font-size: 1.5em;}
+        a    {color: #EDF5E1;}
+        #internal {color: blue;}
+        img  {padding: 0 5%; max-width: 100%;}
+        .req {text-align: left; font-size: larger; margin: 0 auto; max-width: 800px; padding: 10px;}
+        ul   {list-style-type: none; padding: 0;}
+        li {display: inline-block; margin-left: 20%; margin-right: 20%;}
+        </style>
+</head>
+<body>
+    <p><h1>Meeting the Brief:</h1></p>
+    <p><h1>BASIC REQUIREMENTS:</h1></p>
+    <p><h2>Automatic systm:</h2></p>
+    <P><h3>My system consists of playing the game on the micro bit and when you lose in the game, the micro bit code automatically sends the users data onto the serial. I have python code that is in sync with Python code.  The python code uploads the data from the serial to a server called Firebase. JavaScript code will then automatically collect the data from Firebase and produce a visual graph.</h3></P>
+    <p><h2>Inputs:</h2></p>
+    <ul>
+        <li>The buttons on the micro bit are digital inputs.</li>
+        <li>The LDR on my circuit is an analog input.</li>
+    </ul>
+    <p><h2>Outputs:</h2></p>
+    <ul>
+        <li>The sound from the micro bit is an analog output.</li>
+        <li>The output from the prediction forecast is a digital output.</li>
+    </ul>
+    <p><h2>Validation:</h2></p>
+    <p><h3>I validated my data gathered by checking if it is the correct data type, preferably a numerical number
+        I stored the data in a list for example the memory score was stored in a list.
+        </h3></p>
+    <p><h2>Analysis:</h2></p>   
+    <p><h3>My basic model predicts whether you should keep playing the game depending on your memory score on the game.</h3></p> 
+    <p><h1>ADVANCED REQUIREMENTS:</h1></p>    
+    <p><h2>Dataset:</h2></p>
+    <p><h3>The dataset was put in manually like the level, age and score of the user because I didn’t have great access to wide range of people with different ages. I inputted from 0 to 10, 10 to 20, 20 to 30, 30 to 40, 40 to 50 and 50 and 60. I inputted the memory score randomly but not too random knowing that 6-year olds don’t have as great as a brain as 20-year-olds old so its evenly distributed.</h3></p>
+    <p><h2>What if question parameters:</h2></p>
+    <p><h3>For the question, what if age affects attention span? I took the parameters, if the user reads (True or False), if the user is under 18, and the average age on the whole dataset.
+        For what if light affects the attention span of a person? I took the parameters if the user is in a sufficient light room if there is a light source, and the average light intensity for the whole dataset.
+        For what-if questions, the parameters are all three different types of data.
+        </h3></p>    
+    <p><h2>Graphical format:</h2></p>
+    <p><h3>For the graphical format I used the same code as I did for my basic requirements to make a graph. It shows the memory score, age and light intensity of the environment, for the last 30 data points. You can see as the score or level goes up so does the memory score.</h3></p>    
+    </body>
+</html>
